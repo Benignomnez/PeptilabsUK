@@ -1,6 +1,6 @@
 import { MessageCircle } from 'lucide-react'
 
-const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '447700000000'
+const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '8499255780'
 
 export function WhatsAppOrderButton({ product }) {
   const message = `Hello, I'm interested in ordering:\n\nProduct: ${product.name}\nPrice: £${product.price}\n\nPlease let me know availability.`
