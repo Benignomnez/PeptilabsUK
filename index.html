@@ -9,9 +9,36 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      body { margin: 0; background: #0f172a; font-family: Inter, sans-serif; }
+      #loading {
+        color: #94a3b8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        font-size: 16px;
+        gap: 12px;
+      }
+      #loading p { margin: 0; }
+      #loading .err { color: #f87171; font-size: 13px; max-width: 600px; word-break: break-all; text-align:center; padding: 0 1rem; }
+    </style>
   </head>
   <body>
+    <div id="loading">
+      <p>Loading PeptiLabs UK...</p>
+      <p class="err" id="err-msg"></p>
+    </div>
     <div id="root"></div>
+    <script>
+      window.onerror = function(msg, src, line, col, err) {
+        document.getElementById('err-msg').textContent = 'JS Error: ' + msg + ' (' + src + ':' + line + ')';
+      };
+      window.onunhandledrejection = function(e) {
+        document.getElementById('err-msg').textContent = 'Promise Error: ' + e.reason;
+      };
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
