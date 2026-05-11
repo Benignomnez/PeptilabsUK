@@ -4,10 +4,12 @@ import Home from './pages/Home'
 import Products from './pages/Products'
 import Login from './pages/Login'
 import Admin from './pages/Admin'
+import ScrollToTop from './components/ScrollToTop'
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/admin/*" element={<Admin />} />

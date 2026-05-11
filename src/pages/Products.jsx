@@ -14,7 +14,6 @@ export default function Products() {
   useEffect(() => {
     const cat = searchParams.get('cat')
     setCategory(cat || 'All')
-    if (cat) window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [searchParams])
 
   const categories = ['All', ...new Set(products.map(p => p.category).filter(Boolean))]
