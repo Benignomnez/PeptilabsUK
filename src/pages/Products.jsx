@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { Search, FlaskConical } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Search, FlaskConical, MessageCircle, Truck, ShieldCheck } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
 import ProductGrid from '../components/ProductGrid'
 import { WhatsAppFloating } from '../components/WhatsAppButton'
 import { useProducts } from '../hooks/useProducts'
@@ -8,6 +9,15 @@ export default function Products() {
   const { products, loading } = useProducts()
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All')
+  const [searchParams] = useSearchParams()
+
+  useEffect(() => {
+    const cat = searchParams.get('cat')
+    if (cat && products.length > 0) {
+      const match = products.find(p => p.category?.toLowerCase().includes(cat.toLowerCase()))
+      if (match) setCategory(match.category)
+    }
+  }, [searchParams, products])
 
   const categories = ['All', ...new Set(products.map(p => p.category).filter(Boolean))]
 
@@ -28,7 +38,7 @@ export default function Products() {
             <FlaskConical size={24} className="text-gold-400" />
             <h1 className="text-3xl font-black text-white">Catálogo de Péptidos</h1>
           </div>
-          <p className="text-gray-400">Pharmaceutical grade · Enviado desde Reino Unido 🇬🇧 · Solo para investigación científica</p>
+          <p className="text-gray-400">Pharmaceutical grade · Enviado desde Reino Unido 🇬🇧 · Pureza &gt;99% garantizada</p>
         </div>
       </div>
 
@@ -71,11 +81,29 @@ export default function Products() {
 
         <ProductGrid products={filtered} loading={loading} />
 
-        {/* Disclaimer */}
-        <div className="mt-16 p-6 bg-navy-950 border border-gold-500/10 rounded-xl text-center">
-          <p className="text-xs text-gray-500 leading-relaxed max-w-2xl mx-auto">
-            ⚗️ <strong className="text-gray-400">Aviso Legal:</strong> Todos los productos de PeptiLabs UK están destinados exclusivamente para uso en investigación científica y laboratorial. No son para consumo humano o animal. Solo para profesionales capacitados en entornos de investigación controlados.
+        {/* Promo CTA */}
+        <div className="mt-16 p-8 bg-navy-950 border border-gold-500/20 rounded-2xl text-center">
+          <p className="text-gold-400 font-black uppercase tracking-widest text-xs mb-3">¿Necesitas orientación?</p>
+          <h3 className="text-white text-2xl font-black mb-2">Habla con nuestros especialistas</h3>
+          <p className="text-gray-400 text-sm mb-6 max-w-lg mx-auto">
+            Nuestro equipo científico está disponible para ayudarte a elegir el péptido ideal para tu investigación. Respuesta rápida garantizada.
           </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
+            <div className="flex items-center gap-2 text-sm text-gray-300">
+              <ShieldCheck size={16} className="text-gold-400" /> GMP Certified · HPLC Tested
+            </div>
+            <div className="flex items-center gap-2 text-sm text-gray-300">
+              <Truck size={16} className="text-gold-400" /> Envío discreto desde UK 🇬🇧
+            </div>
+          </div>
+          <a
+            href="https://wa.me/8499255780?text=Hola%2C+me+gustaría+recibir+orientación+sobre+sus+péptidos."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary inline-flex items-center gap-2"
+          >
+            <MessageCircle size={18} /> Consultar por WhatsApp
+          </a>
         </div>
       </div>
 

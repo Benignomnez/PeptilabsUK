@@ -173,9 +173,9 @@ export default function Home() {
             <p className="text-gold-400 uppercase tracking-widest text-sm font-semibold mb-2">Simple y Rápido</p>
             <h2 className="text-3xl font-black text-white">¿Cómo Ordenar?</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
             {orderSteps.map(({ icon: Icon, step, title, desc }) => (
-              <div key={step} className="relative card p-6 text-center hover:border-gold-500/40 transition-colors">
+              <div key={step} className="relative card p-6 pt-8 text-center hover:border-gold-500/40 transition-colors">
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold-500 text-navy-900 font-black text-sm w-8 h-8 rounded-full flex items-center justify-center">
                   {step}
                 </div>
