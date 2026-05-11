@@ -4,24 +4,27 @@
 
 @layer base {
   body {
-    @apply bg-gray-950 text-gray-100 font-sans antialiased;
+    @apply bg-navy-900 text-gray-100 font-sans antialiased;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-brand-500 hover:bg-brand-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200;
+    @apply bg-gold-500 hover:bg-gold-600 text-navy-900 font-bold px-6 py-3 rounded-lg transition-colors duration-200;
   }
   .btn-secondary {
-    @apply bg-gray-800 hover:bg-gray-700 text-gray-100 font-semibold px-6 py-3 rounded-lg transition-colors duration-200;
+    @apply bg-transparent border border-gold-500 hover:bg-gold-500/10 text-gold-400 font-semibold px-6 py-3 rounded-lg transition-colors duration-200;
   }
   .card {
-    @apply bg-gray-900 border border-gray-800 rounded-xl overflow-hidden;
+    @apply bg-navy-800 border border-navy-700 rounded-xl overflow-hidden;
   }
   .input {
-    @apply bg-gray-800 border border-gray-700 text-gray-100 rounded-lg px-4 py-2.5 w-full focus:outline-none focus:border-brand-500 transition-colors;
+    @apply bg-navy-700 border border-navy-600 text-gray-100 rounded-lg px-4 py-2.5 w-full focus:outline-none focus:border-gold-500 transition-colors;
   }
   .label {
     @apply text-sm font-medium text-gray-400 mb-1 block;
+  }
+  .gold-text {
+    @apply text-gold-400;
   }
 }

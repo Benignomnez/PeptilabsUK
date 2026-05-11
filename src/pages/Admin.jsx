@@ -4,6 +4,7 @@ import { Loader2 } from 'lucide-react'
 import AdminSidebar from '../components/AdminSidebar'
 import AdminDashboard from './admin/AdminDashboard'
 import AdminProducts from './admin/AdminProducts'
+import AdminBulkUpload from './admin/AdminBulkUpload'
 import { supabase } from '../services/supabase'
 
 export default function Admin() {
@@ -17,8 +18,8 @@ export default function Admin() {
 
   if (session === undefined) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 size={28} className="animate-spin text-brand-400" />
+      <div className="min-h-screen flex items-center justify-center bg-navy-900">
+        <Loader2 size={28} className="animate-spin text-gold-400" />
       </div>
     )
   }
@@ -28,10 +29,11 @@ export default function Admin() {
   return (
     <div className="flex min-h-screen">
       <AdminSidebar />
-      <main className="flex-1 p-8 bg-gray-950">
+      <main className="flex-1 p-8 bg-navy-900">
         <Routes>
           <Route index element={<AdminDashboard />} />
           <Route path="products" element={<AdminProducts />} />
+          <Route path="bulk-upload" element={<AdminBulkUpload />} />
         </Routes>
       </main>
     </div>
