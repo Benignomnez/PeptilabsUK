@@ -116,15 +116,29 @@ badges.forEach(b => {
   bx += bw + 12
 })
 
+// ── CTA button (right side) ──────────────────────────────────────────────
+const ctaText = '🛒  Ver Catálogo →'
+ctx.font = 'bold 26px Arial'
+const ctaW = ctx.measureText(ctaText).width + 48
+const ctaX = W - 60 - ctaW
+const ctaY = 490
+ctx.fillStyle = '#d4a017'
+ctx.beginPath()
+ctx.roundRect(ctaX, ctaY, ctaW, 52, 10)
+ctx.fill()
+ctx.fillStyle = '#060d1f'
+ctx.textAlign = 'left'
+ctx.fillText(ctaText, ctaX + 24, ctaY + 34)
+
 // ── Right side: URL + tagline ────────────────────────────────────────────
 ctx.textAlign = 'right'
-ctx.font = 'bold 32px Arial'
+ctx.font = 'bold 28px Arial'
 ctx.fillStyle = '#ffffff'
-ctx.fillText('peptilabsuk.com', W - 60, 560)
+ctx.fillText('peptilabsuk.com', W - 60, 575)
 
-ctx.font = '400 20px Arial'
+ctx.font = '400 18px Arial'
 ctx.fillStyle = 'rgba(212,160,23,0.6)'
-ctx.fillText('Ciencia que transforma · Calidad que se siente', W - 60, 595)
+ctx.fillText('Ciencia que transforma · Calidad que se siente', W - 60, 603)
 
 // ── Bottom gold bar ──────────────────────────────────────────────────────
 ctx.fillStyle = '#d4a017'
