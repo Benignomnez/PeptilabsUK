@@ -21,19 +21,27 @@ export default function CartDrawer() {
 
   return (
     <>
-      {/* Overlay */}
+      {/* Overlay — z-40, drawer es z-50 */}
       {open && (
         <div
-          className="fixed inset-0 bg-black/60 z-50 backdrop-blur-sm"
+          className="fixed inset-0 bg-black/60 z-40 backdrop-blur-sm"
           onClick={() => setOpen(false)}
         />
       )}
 
-      {/* Drawer */}
+      {/* Drawer — z-50 para estar siempre encima del overlay */}
       <div className={`fixed top-0 right-0 h-full w-full max-w-sm bg-navy-900 border-l border-gold-500/20 z-50 flex flex-col transition-transform duration-300 ${open ? 'translate-x-0' : 'translate-x-full'}`}>
 
+        {/* Continuar comprando — siempre visible */}
+        <button
+          onClick={() => setOpen(false)}
+          className="flex items-center gap-1 text-xs text-gray-400 hover:text-gold-400 transition-colors px-5 pt-3 pb-1"
+        >
+          ← Continuar comprando
+        </button>
+
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gold-500/10 bg-navy-950">
+        <div className="flex items-center justify-between px-5 py-3 border-b border-gold-500/10 bg-navy-950">
           <div className="flex items-center gap-2">
             <ShoppingCart size={20} className="text-gold-400" />
             <h2 className="text-white font-bold text-lg">Mi Pedido</h2>
