@@ -12,19 +12,19 @@ import CartDrawer from './components/CartDrawer'
 export default function App() {
   return (
     <CartProvider>
-      <CartDrawer />
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/admin/*" element={<Admin />} />
-        <Route element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="products" element={<Products />} />
-          <Route path="products/:id" element={<ProductDetail />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <ScrollToTop />
+        <CartDrawer />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/admin/*" element={<Admin />} />
+          <Route element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="products" element={<Products />} />
+            <Route path="products/:id" element={<ProductDetail />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </CartProvider>
   )
 }

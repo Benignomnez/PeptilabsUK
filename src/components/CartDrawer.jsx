@@ -1,4 +1,5 @@
-import { X, Plus, Minus, Trash2, ShoppingCart, MessageCircle, FlaskConical } from 'lucide-react'
+import { X, Plus, Minus, Trash2, ShoppingCart, MessageCircle, FlaskConical, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 
 const WHATSAPP_NUMBER = '8499255780'
@@ -32,7 +33,7 @@ export default function CartDrawer() {
       <div className={`fixed top-0 right-0 h-full w-full max-w-sm bg-navy-900 border-l border-gold-500/20 z-50 flex flex-col transition-transform duration-300 ${open ? 'translate-x-0' : 'translate-x-full'}`}>
 
         {/* Header */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-gold-500/10">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-gold-500/10 bg-navy-950">
           <div className="flex items-center gap-2">
             <ShoppingCart size={20} className="text-gold-400" />
             <h2 className="text-white font-bold text-lg">Mi Pedido</h2>
@@ -42,18 +43,28 @@ export default function CartDrawer() {
               </span>
             )}
           </div>
-          <button onClick={() => setOpen(false)} className="text-gray-400 hover:text-white transition-colors">
-            <X size={22} />
+          <button
+            onClick={() => setOpen(false)}
+            className="w-9 h-9 flex items-center justify-center rounded-full bg-navy-700 hover:bg-navy-600 text-gray-300 hover:text-white transition-colors"
+          >
+            <X size={20} />
           </button>
         </div>
 
         {/* Items */}
         <div className="flex-1 overflow-y-auto py-4 px-5">
           {items.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-center">
+            <div className="flex flex-col items-center justify-center h-full text-center px-6">
               <FlaskConical size={48} className="text-gold-400/20 mb-4" />
-              <p className="text-gray-400 font-medium">Tu pedido está vacío</p>
-              <p className="text-gray-600 text-sm mt-1">Agrega productos desde el catálogo</p>
+              <p className="text-gray-300 font-semibold text-lg">Tu pedido está vacío</p>
+              <p className="text-gray-500 text-sm mt-1 mb-8">Agrega productos desde el catálogo</p>
+              <Link
+                to="/products"
+                onClick={() => setOpen(false)}
+                className="btn-primary flex items-center gap-2 text-sm px-6 py-3"
+              >
+                Ver Catálogo <ArrowRight size={16} />
+              </Link>
             </div>
           ) : (
             <div className="space-y-4">
