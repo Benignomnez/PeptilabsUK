@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { WhatsAppOrderButton } from './WhatsAppButton'
 import { FlaskConical } from 'lucide-react'
 
@@ -55,6 +56,12 @@ export default function ProductCard({ product }) {
         </div>
 
         <WhatsAppOrderButton product={product} />
+        <Link
+          to={`/products/${product.id}`}
+          className="text-center text-xs text-gray-500 hover:text-gold-400 transition-colors py-1"
+        >
+          Ver detalles →
+        </Link>
       </div>
     </div>
   )

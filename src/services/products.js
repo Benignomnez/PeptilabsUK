@@ -10,6 +10,28 @@ export async function getProducts() {
   return data
 }
 
+export async function getProductById(id) {
+  const { data, error } = await supabase
+    .from('products')
+    .select('*')
+    .eq('id', id)
+    .single()
+  if (error) throw error
+  return data
+}
+
+export async function getRelatedProducts(category, excludeId) {
+  const { data, error } = await supabase
+    .from('products')
+    .select('*')
+    .eq('category', category)
+    .eq('visible', true)
+    .neq('id', excludeId)
+    .limit(4)
+  if (error) throw error
+  return data
+}
+
 export async function getAllProducts() {
   const { data, error } = await supabase
     .from('products')
