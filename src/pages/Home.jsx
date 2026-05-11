@@ -174,15 +174,17 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
             {orderSteps.map(({ icon: Icon, step, title, desc }) => (
-              <div key={step} className="relative card p-6 pt-8 text-center hover:border-gold-500/40 transition-colors">
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold-500 text-navy-900 font-black text-sm w-8 h-8 rounded-full flex items-center justify-center">
-                  {step}
+              <div key={step} className="pt-5">
+                <div className="relative bg-navy-800 border border-navy-700 rounded-xl p-6 pt-8 text-center hover:border-gold-500/40 transition-colors">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold-500 text-navy-900 font-black text-sm w-8 h-8 rounded-full flex items-center justify-center shadow-lg">
+                    {step}
+                  </div>
+                  <div className="mb-4 flex justify-center">
+                    <Icon size={32} className="text-gold-400" />
+                  </div>
+                  <h3 className="text-white font-bold mb-2">{title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
                 </div>
-                <div className="mt-4 mb-4 flex justify-center">
-                  <Icon size={32} className="text-gold-400" />
-                </div>
-                <h3 className="text-white font-bold mb-2">{title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>

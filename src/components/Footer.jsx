@@ -28,10 +28,11 @@ export default function Footer() {
           <h4 className="text-gold-400 font-semibold uppercase tracking-wider text-sm mb-4">Quick Links</h4>
           <ul className="space-y-2 text-sm text-gray-400">
             <li><Link to="/" className="hover:text-gold-400 transition-colors">Home</Link></li>
-            <li><Link to="/products" className="hover:text-gold-400 transition-colors">Products</Link></li>
-            <li><Link to="/products?cat=Regeneración" className="hover:text-gold-400 transition-colors">Regeneración & Salud</Link></li>
-            <li><Link to="/products?cat=Pérdida+de+Grasa" className="hover:text-gold-400 transition-colors">Pérdida de Grasa</Link></li>
-            <li><Link to="/products?cat=Hormonales" className="hover:text-gold-400 transition-colors">Hormonales</Link></li>
+            <li><Link to="/products" className="hover:text-gold-400 transition-colors">Todos los Productos</Link></li>
+            <li><Link to="/products?cat=Regeneraci%C3%B3n+%26+Salud" className="hover:text-gold-400 transition-colors">Regeneración & Salud</Link></li>
+            <li><Link to="/products?cat=P%C3%A9rdida+de+Grasa+%26+Metabolismo" className="hover:text-gold-400 transition-colors">Pérdida de Grasa</Link></li>
+            <li><Link to="/products?cat=Hormonales+%26+Crecimiento" className="hover:text-gold-400 transition-colors">Hormonales & Crecimiento</Link></li>
+            <li><Link to="/products?cat=Est%C3%A9tica+%26+Anti-Aging" className="hover:text-gold-400 transition-colors">Estética & Anti-Aging</Link></li>
           </ul>
         </div>
 

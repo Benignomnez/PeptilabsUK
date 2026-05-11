@@ -13,11 +13,8 @@ export default function Products() {
 
   useEffect(() => {
     const cat = searchParams.get('cat')
-    if (cat && products.length > 0) {
-      const match = products.find(p => p.category?.toLowerCase().includes(cat.toLowerCase()))
-      if (match) setCategory(match.category)
-    }
-  }, [searchParams, products])
+    setCategory(cat || 'All')
+  }, [searchParams])
 
   const categories = ['All', ...new Set(products.map(p => p.category).filter(Boolean))]
 
