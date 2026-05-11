@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import { WhatsAppOrderButton } from './WhatsAppButton'
-import { FlaskConical } from 'lucide-react'
+import { FlaskConical, ShoppingCart } from 'lucide-react'
+import { useCart } from '../context/CartContext'
 
 export default function ProductCard({ product }) {
+  const { addItem } = useCart()
   return (
     <div className="card flex flex-col group hover:border-gold-500/40 transition-colors duration-200">
       <div className="relative bg-navy-700 aspect-square overflow-hidden">
@@ -55,7 +57,14 @@ export default function ProductCard({ product }) {
           </span>
         </div>
 
-        <WhatsAppOrderButton product={product} />
+        <button
+          onClick={() => addItem(product)}
+          disabled={product.stock === 0}
+          className="flex items-center justify-center gap-2 bg-navy-700 hover:bg-navy-600 border border-navy-600 hover:border-gold-500/50 text-gray-200 font-semibold px-5 py-2.5 rounded-lg transition-colors w-full text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          <ShoppingCart size={15} />
+          {product.stock === 0 ? 'Agotado' : 'Agregar al pedido'}
+        </button>
         <Link
           to={`/products/${product.id}`}
           className="text-center text-xs text-gray-500 hover:text-gold-400 transition-colors py-1"

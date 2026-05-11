@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { ArrowLeft, FlaskConical, ShieldCheck, Truck, Award, MessageCircle, Package, CheckCircle, Loader2 } from 'lucide-react'
+import { ArrowLeft, FlaskConical, ShieldCheck, Truck, Award, MessageCircle, Package, CheckCircle, Loader2, ShoppingCart } from 'lucide-react'
 import { getProductById, getRelatedProducts } from '../services/products'
 import ProductCard from '../components/ProductCard'
 import { WhatsAppFloating } from '../components/WhatsAppButton'
+import { useCart } from '../context/CartContext'
 
 const CATEGORY_INFO = {
   'Regeneración & Salud': {
@@ -54,6 +55,7 @@ const SHIPPING_FEATURES = [
 export default function ProductDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const { addItem } = useCart()
   const [product, setProduct] = useState(null)
   const [related, setRelated] = useState([])
   const [loading, setLoading] = useState(true)
@@ -199,6 +201,14 @@ export default function ProductDetail() {
 
             {/* CTA */}
             <div className="hidden lg:flex flex-col gap-3">
+              <button
+                onClick={() => inStock && addItem(product)}
+                disabled={!inStock}
+                className={`flex items-center justify-center gap-2 bg-navy-700 hover:bg-navy-600 border border-gold-500/30 hover:border-gold-500/60 text-white font-bold px-6 py-4 rounded-lg transition-colors text-base ${!inStock ? 'opacity-50 cursor-not-allowed' : ''}`}
+              >
+                <ShoppingCart size={20} />
+                {inStock ? 'Agregar al pedido' : 'Agotado'}
+              </button>
               <a
                 href={waUrl}
                 target="_blank"
@@ -206,15 +216,7 @@ export default function ProductDetail() {
                 className={`btn-primary flex items-center justify-center gap-2 text-base py-4 ${!inStock ? 'opacity-50 pointer-events-none' : ''}`}
               >
                 <MessageCircle size={20} />
-                {inStock ? `Ordenar por WhatsApp — RD$${Number(product.price).toLocaleString()}` : 'Producto Agotado'}
-              </a>
-              <a
-                href="https://wa.me/8499255780?text=Hola%2C+quisiera+más+información+sobre+sus+productos."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary flex items-center justify-center gap-2 text-sm"
-              >
-                <MessageCircle size={16} /> Consultar con especialista
+                {inStock ? `Ordenar directo — RD$${Number(product.price).toLocaleString()}` : 'Producto Agotado'}
               </a>
             </div>
 
@@ -249,15 +251,21 @@ export default function ProductDetail() {
 
       {/* Sticky mobile CTA */}
       {inStock && (
-        <div className="lg:hidden fixed bottom-0 inset-x-0 bg-navy-950 border-t border-gold-500/20 p-4 z-40">
+        <div className="lg:hidden fixed bottom-0 inset-x-0 bg-navy-950 border-t border-gold-500/20 p-4 z-40 flex gap-3">
+          <button
+            onClick={() => addItem(product)}
+            className="flex-1 flex items-center justify-center gap-2 bg-navy-700 border border-gold-500/30 text-white font-bold py-3 rounded-lg text-sm"
+          >
+            <ShoppingCart size={16} /> Agregar
+          </button>
           <a
             href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary flex items-center justify-center gap-2 w-full text-base py-4"
+            className="flex-1 btn-primary flex items-center justify-center gap-2 py-3 text-sm"
           >
-            <MessageCircle size={20} />
-            Ordenar — RD${Number(product.price).toLocaleString()}
+            <MessageCircle size={16} />
+            Ordenar directo
           </a>
         </div>
       )}

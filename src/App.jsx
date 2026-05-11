@@ -6,9 +6,13 @@ import ProductDetail from './pages/ProductDetail'
 import Login from './pages/Login'
 import Admin from './pages/Admin'
 import ScrollToTop from './components/ScrollToTop'
+import { CartProvider } from './context/CartContext'
+import CartDrawer from './components/CartDrawer'
 
 export default function App() {
   return (
+    <CartProvider>
+      <CartDrawer />
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
@@ -21,5 +25,6 @@ export default function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </CartProvider>
   )
 }
