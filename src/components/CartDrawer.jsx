@@ -1,5 +1,6 @@
+import { useEffect } from 'react'
 import { X, Plus, Minus, Trash2, ShoppingCart, MessageCircle, FlaskConical, ArrowRight } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 
 const WHATSAPP_NUMBER = '8499255780'
@@ -13,6 +14,11 @@ function buildMessage(items, total) {
 
 export default function CartDrawer() {
   const { items, open, setOpen, removeItem, updateQty, clearCart, totalItems, totalPrice } = useCart()
+  const { pathname, search } = useLocation()
+
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname, search])
 
   function sendOrder() {
     const msg = buildMessage(items, totalPrice)
