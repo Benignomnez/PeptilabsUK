@@ -33,11 +33,10 @@ export default function Home() {
 
   return (
     <>
-      {/* Disclaimer Banner */}
-      <div className="bg-navy-950 border-b border-gold-500/20 py-2 px-4 text-center">
-        <p className="text-xs text-gray-400">
-          ⚗️ <span className="text-gold-400 font-semibold">Solo para investigación científica.</span>{' '}
-          No destinado para consumo humano. Para uso exclusivo en laboratorio y estudios de investigación.
+      {/* Promo Banner */}
+      <div className="bg-gold-500 py-2 px-4 text-center">
+        <p className="text-xs text-navy-900 font-bold tracking-wide">
+          🚚 Envío discreto garantizado desde Reino Unido 🇬🇧 &nbsp;·&nbsp; 🔬 Pureza &gt;99% certificada HPLC &nbsp;·&nbsp; ✅ Tracking incluido en todos los pedidos
         </p>
       </div>
 

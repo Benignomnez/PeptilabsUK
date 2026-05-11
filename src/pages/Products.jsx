@@ -44,15 +44,15 @@ export default function Products() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
         {/* Filters */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          <div className="relative flex-1">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+        <div className="flex flex-col gap-4 mb-8">
+          <div className="relative w-full">
+            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               placeholder="Buscar péptidos..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="input pl-9"
+              className="w-full bg-navy-800 border border-navy-600 text-gray-100 rounded-xl pl-11 pr-4 py-4 text-base focus:outline-none focus:border-gold-500 transition-colors placeholder-gray-500"
             />
           </div>
           <div className="flex gap-2 flex-wrap">
