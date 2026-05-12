@@ -115,7 +115,7 @@ export default function ProductDetail() {
           <div>
             <div className="bg-navy-800 border border-navy-700 rounded-2xl overflow-hidden aspect-square flex items-center justify-center relative">
               {product.image_url ? (
-                <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" />
+                <img src={product.image_url} alt={product.name} className="w-full h-full object-contain bg-white" />
               ) : (
                 <div className="text-center">
                   <div className="w-32 h-32 rounded-full bg-gold-500/10 border border-gold-500/20 flex items-center justify-center mx-auto mb-4">

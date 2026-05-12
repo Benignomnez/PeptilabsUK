@@ -7,16 +7,16 @@ export default function ProductCard({ product }) {
   const { addItem } = useCart()
   return (
     <div className="card flex flex-col group hover:border-gold-500/40 transition-colors duration-200">
-      <div className="relative bg-navy-700 aspect-square overflow-hidden">
+      <div className="relative bg-navy-700 h-48 overflow-hidden">
         {product.image_url ? (
           <img
             src={product.image_url}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-contain bg-white group-hover:scale-105 transition-transform duration-300"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <FlaskConical size={48} className="text-gold-400/20" />
+            <FlaskConical size={40} className="text-gold-400/20" />
           </div>
         )}
         {product.featured && (
