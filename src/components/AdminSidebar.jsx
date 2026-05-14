@@ -26,13 +26,13 @@ export default function AdminSidebar() {
 
       <nav className="flex flex-col gap-1 flex-1">
         <NavLink to="/admin" end className={linkClass}>
-          <LayoutDashboard size={18} /> Dashboard
+          <LayoutDashboard size={18} /> Panel Principal
         </NavLink>
         <NavLink to="/admin/products" className={linkClass}>
-          <Package size={18} /> Products
+          <Package size={18} /> Productos
         </NavLink>
         <NavLink to="/admin/bulk-upload" className={linkClass}>
-          <Upload size={18} /> Bulk Upload
+          <Upload size={18} /> Carga Masiva
         </NavLink>
       </nav>
 
@@ -40,7 +40,7 @@ export default function AdminSidebar() {
         onClick={handleLogout}
         className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:bg-navy-700 hover:text-white transition-colors font-medium"
       >
-        <LogOut size={18} /> Logout
+        <LogOut size={18} /> Cerrar Sesión
       </button>
     </aside>
   )

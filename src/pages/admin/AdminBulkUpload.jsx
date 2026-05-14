@@ -83,54 +83,54 @@ export default function AdminBulkUpload() {
 
   return (
     <div className="max-w-3xl">
-      <h1 className="text-2xl font-bold text-white mb-2">Bulk Upload</h1>
-      <p className="text-gray-400 text-sm mb-8">Upload products from a Google Sheets CSV export.</p>
+      <h1 className="text-2xl font-bold text-white mb-2">Carga Masiva</h1>
+      <p className="text-gray-400 text-sm mb-8">Sube productos desde un archivo CSV exportado de Google Sheets.</p>
 
-      {/* Step 1 */}
+      {/* Paso 1 */}
       <div className="card p-6 mb-6">
         <h2 className="text-white font-semibold mb-1 flex items-center gap-2">
           <span className="w-6 h-6 rounded-full bg-gold-500 text-navy-900 text-xs font-black flex items-center justify-center">1</span>
-          Download the template
+          Descargar la plantilla
         </h2>
         <p className="text-gray-400 text-sm mb-4 ml-8">
-          Open in Google Sheets, fill in your products, then export as <strong className="text-white">File → Download → CSV</strong>.
+          Ábrela en Google Sheets, completa tus productos y exporta con <strong className="text-white">Archivo → Descargar → CSV</strong>.
         </p>
         <div className="ml-8 mb-3 bg-navy-700 rounded-lg p-3 text-xs font-mono text-gray-300 overflow-x-auto">
           {TEMPLATE_HEADERS.join(', ')}
         </div>
         <button onClick={downloadTemplate} className="ml-8 btn-primary flex items-center gap-2 text-sm py-2 px-4">
-          <Download size={15} /> Download Template CSV
+          <Download size={15} /> Descargar Plantilla CSV
         </button>
       </div>
 
-      {/* Step 2 */}
+      {/* Paso 2 */}
       <div className="card p-6 mb-6">
         <h2 className="text-white font-semibold mb-4 flex items-center gap-2">
           <span className="w-6 h-6 rounded-full bg-gold-500 text-navy-900 text-xs font-black flex items-center justify-center">2</span>
-          Upload your CSV file
+          Subir archivo CSV
         </h2>
         <label className="ml-8 flex flex-col items-center justify-center border-2 border-dashed border-navy-600 hover:border-gold-500/50 rounded-xl p-8 cursor-pointer transition-colors">
           <FileText size={32} className="text-gold-400/50 mb-3" />
-          <p className="text-gray-300 text-sm font-medium">Click to select CSV file</p>
-          <p className="text-gray-500 text-xs mt-1">Exported from Google Sheets</p>
+          <p className="text-gray-300 text-sm font-medium">Clic para seleccionar archivo CSV</p>
+          <p className="text-gray-500 text-xs mt-1">Exportado desde Google Sheets</p>
           <input ref={fileRef} type="file" accept=".csv" onChange={handleFile} className="hidden" />
         </label>
       </div>
 
-      {/* Preview */}
+      {/* Vista previa */}
       {preview.length > 0 && (
         <div className="card p-6 mb-6">
           <h2 className="text-white font-semibold mb-4 flex items-center gap-2">
             <span className="w-6 h-6 rounded-full bg-gold-500 text-navy-900 text-xs font-black flex items-center justify-center">3</span>
-            Preview — {preview.length} products found
+            Vista previa — {preview.length} productos encontrados
           </h2>
           <div className="overflow-x-auto mb-4">
             <table className="w-full text-xs">
               <thead>
                 <tr className="border-b border-navy-600 text-gray-400">
-                  <th className="text-left px-3 py-2">Name</th>
-                  <th className="text-left px-3 py-2">Category</th>
-                  <th className="text-left px-3 py-2">Price (RD$)</th>
+                  <th className="text-left px-3 py-2">Nombre</th>
+                  <th className="text-left px-3 py-2">Categoría</th>
+                  <th className="text-left px-3 py-2">Precio (RD$)</th>
                   <th className="text-left px-3 py-2">Stock</th>
                   <th className="text-left px-3 py-2">Visible</th>
                 </tr>
@@ -147,25 +147,25 @@ export default function AdminBulkUpload() {
                 ))}
               </tbody>
             </table>
-            {preview.length > 10 && <p className="text-gray-500 text-xs mt-2 px-3">...and {preview.length - 10} more rows</p>}
+            {preview.length > 10 && <p className="text-gray-500 text-xs mt-2 px-3">...y {preview.length - 10} filas más</p>}
           </div>
           <button onClick={handleUpload} disabled={uploading} className="btn-primary flex items-center gap-2">
             {uploading ? <Loader2 size={16} className="animate-spin" /> : <Upload size={16} />}
-            {uploading ? `Uploading...` : `Upload ${preview.length} Products`}
+            {uploading ? 'Subiendo...' : `Subir ${preview.length} Productos`}
           </button>
         </div>
       )}
 
-      {/* Results */}
+      {/* Resultados */}
       {done && (
         <div className="card p-6">
           <div className="flex items-center gap-4 mb-4">
             <div className="flex items-center gap-2 text-green-400">
-              <CheckCircle size={18} /> <span className="font-semibold">{successCount} uploaded</span>
+              <CheckCircle size={18} /> <span className="font-semibold">{successCount} subidos correctamente</span>
             </div>
             {errorCount > 0 && (
               <div className="flex items-center gap-2 text-red-400">
-                <XCircle size={18} /> <span className="font-semibold">{errorCount} failed</span>
+                <XCircle size={18} /> <span className="font-semibold">{errorCount} fallidos</span>
               </div>
             )}
           </div>

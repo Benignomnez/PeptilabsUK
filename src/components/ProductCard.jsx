@@ -21,7 +21,7 @@ export default function ProductCard({ product }) {
         )}
         {product.featured && (
           <span className="absolute top-3 left-3 bg-gold-500 text-navy-900 text-xs font-bold px-2 py-1 rounded-full">
-            Top Seller
+            Más Vendido
           </span>
         )}
         {product.stock === 0 && (

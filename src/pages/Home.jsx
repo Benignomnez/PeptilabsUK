@@ -13,10 +13,10 @@ const features = [
 ]
 
 const trustBadges = [
-  { icon: '🔬', label: 'GMP Certified', sub: 'Good Manufacturing Practice' },
-  { icon: '📊', label: 'HPLC Tested', sub: 'Cada lote analizado' },
+  { icon: '🔬', label: 'Certificado GMP', sub: 'Buenas Prácticas de Manufactura' },
+  { icon: '📊', label: 'Analizado HPLC', sub: 'Cada lote analizado' },
   { icon: '📦', label: 'Envío Discreto', sub: 'Empaque sin identificación' },
-  { icon: '🇬🇧', label: 'UK Origin', sub: 'Pharmaceutical Research' },
+  { icon: '🇬🇧', label: 'Origen Reino Unido', sub: 'Investigación Farmacéutica' },
   { icon: '✅', label: '>99% Pureza', sub: 'Garantizado en cada vial' },
   { icon: '🚚', label: 'Tracking incluido', sub: 'Seguimiento en tiempo real' },
 ]
@@ -62,13 +62,13 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-24 grid lg:grid-cols-2 gap-12 items-center w-full">
           <div>
             <div className="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs px-4 py-2 rounded-full mb-6 uppercase tracking-widest font-semibold">
-              🇬🇧 Pharmaceutical Grade · Shipped from UK
+              🇬🇧 Grado Farmacéutico · Enviado desde Reino Unido
             </div>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-none mb-3">
               PEPTI<span className="text-gold-400">LABS</span><span className="text-gold-400 text-3xl align-super">®</span>
             </h1>
             <p className="text-gold-400/80 uppercase tracking-widest text-sm font-bold mb-2">
-              Pharmaceutical Grade Peptide Research
+              Investigación Peptídica de Grado Farmacéutico
             </p>
             <div className="w-16 h-0.5 bg-gold-500 mb-6" />
             <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-lg">
@@ -77,7 +77,7 @@ export default function Home() {
 
             {/* Quick trust indicators */}
             <div className="flex flex-wrap gap-3 mb-8">
-              {['✓ GMP Certified', '✓ HPLC Tested', '✓ Envío Discreto', '✓ +99% Pureza'].map(item => (
+              {['✓ Certificado GMP', '✓ Analizado HPLC', '✓ Envío Discreto', '✓ +99% Pureza'].map(item => (
                 <span key={item} className="text-xs text-gold-400 bg-gold-500/10 border border-gold-500/20 px-3 py-1.5 rounded-full font-semibold">
                   {item}
                 </span>
@@ -124,7 +124,7 @@ export default function Home() {
                 <Award size={22} />
               </div>
               <div className="absolute -bottom-2 -left-6 bg-navy-800 border border-gold-500/30 rounded-xl px-4 py-2 shadow-xl">
-                <p className="text-white text-xs font-bold">🔬 HPLC Verified</p>
+                <p className="text-white text-xs font-bold">🔬 Verificado HPLC</p>
                 <p className="text-gold-400 text-xs">Cada lote analizado</p>
               </div>
             </div>

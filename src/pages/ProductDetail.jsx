@@ -48,7 +48,7 @@ const CATEGORY_INFO = {
 const SHIPPING_FEATURES = [
   { icon: Package, label: 'Envío Discreto', sub: 'Sin identificación en el empaque' },
   { icon: Truck, label: 'Desde Reino Unido 🇬🇧', sub: 'Envío internacional seguro' },
-  { icon: ShieldCheck, label: 'GMP Certified', sub: 'Good Manufacturing Practice' },
+  { icon: ShieldCheck, label: 'Certificado GMP', sub: 'Buenas Prácticas de Manufactura' },
   { icon: Award, label: 'HPLC Verificado', sub: 'Cada lote analizado' },
 ]
 
@@ -91,7 +91,7 @@ export default function ProductDetail() {
       {/* Breadcrumb */}
       <div className="bg-navy-950 border-b border-gold-500/10 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center gap-2 text-sm text-gray-500">
-          <Link to="/" className="hover:text-gold-400 transition-colors">Home</Link>
+          <Link to="/" className="hover:text-gold-400 transition-colors">Inicio</Link>
           <span>/</span>
           <Link to="/products" className="hover:text-gold-400 transition-colors">Productos</Link>
           <span>/</span>
@@ -127,7 +127,7 @@ export default function ProductDetail() {
               )}
               {product.featured && (
                 <span className="absolute top-4 left-4 bg-gold-500 text-navy-900 text-xs font-bold px-3 py-1.5 rounded-full">
-                  ⭐ Top Seller
+                  ⭐ Más Vendido
                 </span>
               )}
               {!inStock && (

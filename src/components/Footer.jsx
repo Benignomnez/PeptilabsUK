@@ -25,7 +25,7 @@ export default function Footer() {
 
         {/* Quick Links */}
         <div>
-          <h4 className="text-gold-400 font-semibold uppercase tracking-wider text-sm mb-4">Quick Links</h4>
+          <h4 className="text-gold-400 font-semibold uppercase tracking-wider text-sm mb-4">Enlaces Rápidos</h4>
           <ul className="space-y-2 text-sm text-gray-400">
             <li><Link to="/" className="hover:text-gold-400 transition-colors">Home</Link></li>
             <li><Link to="/products" className="hover:text-gold-400 transition-colors">Todos los Productos</Link></li>
@@ -39,7 +39,7 @@ export default function Footer() {
 
         {/* Info */}
         <div>
-          <h4 className="text-gold-400 font-semibold uppercase tracking-wider text-sm mb-4">Information</h4>
+          <h4 className="text-gold-400 font-semibold uppercase tracking-wider text-sm mb-4">Información</h4>
           <ul className="space-y-2 text-sm text-gray-400">
             <li className="hover:text-gold-400 transition-colors cursor-pointer">About PeptiLabs</li>
             <li className="hover:text-gold-400 transition-colors cursor-pointer">Shipping Policy</li>
@@ -51,11 +51,11 @@ export default function Footer() {
 
         {/* Social & Contact */}
         <div>
-          <h4 className="text-gold-400 font-semibold uppercase tracking-wider text-sm mb-4">Connect</h4>
+          <h4 className="text-gold-400 font-semibold uppercase tracking-wider text-sm mb-4">Contacto</h4>
           <div className="flex flex-col gap-3">
             <a href="https://wa.me/8499255780" target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-3 text-sm text-gray-400 hover:text-gold-400 transition-colors">
-              <MessageCircle size={18} className="text-green-400" /> WhatsApp Orders
+              <MessageCircle size={18} className="text-green-400" /> Pedidos por WhatsApp
             </a>
             <a href="https://instagram.com/peptilabsuk" target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-3 text-sm text-gray-400 hover:text-gold-400 transition-colors">
@@ -63,13 +63,13 @@ export default function Footer() {
             </a>
             <a href="https://t.me/peptilabsuk" target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-3 text-sm text-gray-400 hover:text-gold-400 transition-colors">
-              <Send size={18} className="text-blue-400" /> Telegram Channel
+              <Send size={18} className="text-blue-400" /> Canal de Telegram
             </a>
           </div>
           <div className="mt-6 p-3 bg-navy-800 rounded-lg border border-gold-500/20">
             <p className="text-xs text-gray-400">📦 Shipped from <span className="text-white font-semibold">United Kingdom 🇬🇧</span></p>
-            <p className="text-xs text-gray-400 mt-1">🔬 Pharmaceutical Grade</p>
-            <p className="text-xs text-gray-400 mt-1">✅ 100% Secure Delivery</p>
+            <p className="text-xs text-gray-400 mt-1">🔬 Grado Farmacéutico</p>
+            <p className="text-xs text-gray-400 mt-1">✅ Entrega 100% Segura</p>
           </div>
         </div>
       </div>

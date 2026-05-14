@@ -33,10 +33,10 @@ const stats = [
 ]
 
 const certifications = [
-  { icon: '📋', title: 'GMP Certified', desc: 'Good Manufacturing Practice — los más altos estándares de fabricación farmacéutica.' },
-  { icon: '🔬', title: 'HPLC Tested', desc: 'High Performance Liquid Chromatography — cada lote analizado individualmente.' },
-  { icon: '🏛️', title: 'ISO Standards', desc: 'Cumplimiento con estándares internacionales de calidad y gestión de laboratorio.' },
-  { icon: '📦', title: 'Cold Chain', desc: 'Cadena de frío controlada desde producción hasta entrega en tu puerta.' },
+  { icon: '📋', title: 'Certificado GMP', desc: 'Buenas Prácticas de Manufactura — los más altos estándares de fabricación farmacéutica.' },
+  { icon: '🔬', title: 'Analizado HPLC', desc: 'Cromatografía Líquida de Alta Eficiencia — cada lote analizado individualmente.' },
+  { icon: '🏛️', title: 'Estándares ISO', desc: 'Cumplimiento con estándares internacionales de calidad y gestión de laboratorio.' },
+  { icon: '📦', title: 'Cadena de Frío', desc: 'Cadena de frío controlada desde producción hasta entrega en tu puerta.' },
 ]
 
 export default function About() {

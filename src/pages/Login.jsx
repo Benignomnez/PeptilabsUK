@@ -30,7 +30,7 @@ export default function Login() {
           <div className="inline-flex items-center justify-center w-14 h-14 bg-brand-500/10 rounded-2xl mb-4">
             <FlaskConical size={28} className="text-brand-400" />
           </div>
-          <h1 className="text-2xl font-bold text-white">Admin Login</h1>
+          <h1 className="text-2xl font-bold text-white">Acceso Administrador</h1>
           <p className="text-gray-400 text-sm mt-1">PeptiLabs UK</p>
         </div>
 
@@ -41,7 +41,7 @@ export default function Login() {
             </div>
           )}
           <div>
-            <label className="label">Email</label>
+            <label className="label">Correo electrónico</label>
             <input
               type="email"
               value={email}
@@ -52,7 +52,7 @@ export default function Login() {
             />
           </div>
           <div>
-            <label className="label">Password</label>
+            <label className="label">Contraseña</label>
             <input
               type="password"
               value={password}
@@ -68,7 +68,7 @@ export default function Login() {
             className="btn-primary w-full flex items-center justify-center gap-2"
           >
             {loading && <Loader2 size={16} className="animate-spin" />}
-            {loading ? 'Signing in...' : 'Sign In'}
+            {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
           </button>
         </form>
       </div>

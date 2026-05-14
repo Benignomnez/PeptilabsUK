@@ -35,7 +35,7 @@ export default function Products() {
             <FlaskConical size={24} className="text-gold-400" />
             <h1 className="text-3xl font-black text-white">Catálogo de Péptidos</h1>
           </div>
-          <p className="text-gray-400">Pharmaceutical grade · Enviado desde Reino Unido 🇬🇧 · Pureza &gt;99% garantizada</p>
+          <p className="text-gray-400">Grado farmacéutico · Enviado desde Reino Unido 🇬🇧 · Pureza &gt;99% garantizada</p>
         </div>
       </div>
 
@@ -87,7 +87,7 @@ export default function Products() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
             <div className="flex items-center gap-2 text-sm text-gray-300">
-              <ShieldCheck size={16} className="text-gold-400" /> GMP Certified · HPLC Tested
+              <ShieldCheck size={16} className="text-gold-400" /> Certificado GMP · Analizado HPLC
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-300">
               <Truck size={16} className="text-gold-400" /> Envío discreto desde UK 🇬🇧

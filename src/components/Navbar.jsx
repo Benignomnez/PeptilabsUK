@@ -24,7 +24,7 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          <NavLink to="/" end className={linkClass}>Home</NavLink>
+          <NavLink to="/" end className={linkClass}>Inicio</NavLink>
           <NavLink to="/products" className={linkClass}>Productos</NavLink>
           <NavLink to="/about" className={linkClass}>Nosotros</NavLink>
           <NavLink to="/admin" className={linkClass}>Admin</NavLink>
@@ -34,7 +34,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="btn-primary text-sm py-2 px-4"
           >
-            Order Now
+            Ordenar Ahora
           </a>
         </div>
 
@@ -59,11 +59,11 @@ export default function Navbar() {
 
       {open && (
         <div className="md:hidden bg-navy-800 border-t border-gold-500/20 px-4 py-4 flex flex-col gap-4">
-          <NavLink to="/" end className={linkClass} onClick={() => setOpen(false)}>Home</NavLink>
+          <NavLink to="/" end className={linkClass} onClick={() => setOpen(false)}>Inicio</NavLink>
           <NavLink to="/products" className={linkClass} onClick={() => setOpen(false)}>Productos</NavLink>
           <NavLink to="/about" className={linkClass} onClick={() => setOpen(false)}>Nosotros</NavLink>
           <NavLink to="/admin" className={linkClass} onClick={() => setOpen(false)}>Admin</NavLink>
-          <a href="https://wa.me/8499255780" target="_blank" rel="noopener noreferrer" className="btn-primary text-center text-sm">Order Now</a>
+          <a href="https://wa.me/8499255780" target="_blank" rel="noopener noreferrer" className="btn-primary text-center text-sm">Ordenar Ahora</a>
         </div>
       )}
     </nav>
