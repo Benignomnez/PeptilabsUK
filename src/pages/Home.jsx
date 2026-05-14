@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ShieldCheck, Microscope, Sparkles, Globe, FlaskConical, Award, CheckCircle, MessageCircle, Package, CreditCard, Truck } from 'lucide-react'
+import { ShieldCheck, Microscope, Sparkles, Globe, FlaskConical, CheckCircle, MessageCircle, Package, CreditCard, Truck } from 'lucide-react'
 import FeaturedCarousel from '../components/FeaturedCarousel'
 import Testimonials from '../components/Testimonials'
 import { WhatsAppFloating } from '../components/WhatsAppButton'
@@ -114,25 +114,16 @@ export default function Home() {
 
           {/* Right: Vial image */}
           <div className="hidden lg:flex items-center justify-center">
-            <div className="relative">
-              <div className="relative w-80 h-96 rounded-2xl overflow-hidden border border-gold-500/20 shadow-2xl">
-                <img
-                  src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=85&auto=format&fit=crop"
-                  alt="Viales de péptidos farmacéuticos"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="text-white text-xs font-black uppercase tracking-widest">PEPTILABS<span className="text-gold-400">®</span></p>
-                  <p className="text-gold-400/70 text-xs tracking-widest">Grado Farmacéutico · Reino Unido</p>
-                </div>
-              </div>
-              <div className="absolute -top-4 -right-4 bg-gold-500 text-navy-900 rounded-full p-3 shadow-xl">
-                <Award size={22} />
-              </div>
-              <div className="absolute -bottom-4 -left-6 bg-navy-800 border border-gold-500/30 rounded-xl px-4 py-3 shadow-xl">
-                <p className="text-white text-xs font-bold">🔬 Verificado HPLC</p>
-                <p className="text-gold-400 text-xs">Cada lote analizado individualmente</p>
+            <div className="relative w-80 h-96 rounded-2xl overflow-hidden border border-gold-500/20 shadow-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=85&auto=format&fit=crop"
+                alt="Viales de péptidos farmacéuticos"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4">
+                <p className="text-white text-xs font-black uppercase tracking-widest">PEPTILABS<span className="text-gold-400">®</span></p>
+                <p className="text-gold-400/70 text-xs tracking-widest">Grado Farmacéutico · Reino Unido</p>
               </div>
             </div>
           </div>
