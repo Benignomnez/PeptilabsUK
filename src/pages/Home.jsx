@@ -116,7 +116,7 @@ export default function Home() {
           <div className="hidden lg:flex items-center justify-center">
             <div className="relative w-80 h-96 rounded-2xl overflow-hidden border border-gold-500/20 shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=85&auto=format&fit=crop"
+                src="https://images.unsplash.com/photo-1612277795421-9bc7706a4a34?w=800&q=85&auto=format&fit=crop"
                 alt="Viales de péptidos farmacéuticos"
                 className="w-full h-full object-cover"
               />

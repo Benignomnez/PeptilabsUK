@@ -1,90 +1,80 @@
-import { useRef, useState, useEffect } from 'react'
-import { ChevronLeft, ChevronRight, Flame } from 'lucide-react'
-import { WhatsAppOrderButton } from './WhatsAppButton'
-import { FlaskConical } from 'lucide-react'
+import { Flame, FlaskConical, ShoppingCart } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { useCart } from '../context/CartContext'
 
 export default function FeaturedCarousel({ products }) {
-  const scrollRef = useRef(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(true)
-
-  const featured = products.filter(p => p.featured).slice(0, 8)
-
-  function checkScroll() {
-    const el = scrollRef.current
-    if (!el) return
-    setCanScrollLeft(el.scrollLeft > 0)
-    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1)
-  }
-
-  useEffect(() => {
-    checkScroll()
-  }, [products])
-
-  function scroll(dir) {
-    scrollRef.current?.scrollBy({ left: dir * 300, behavior: 'smooth' })
-  }
+  const { addItem } = useCart()
+  const featured = products.filter(p => p.featured).slice(0, 4)
 
   if (!featured.length) return null
 
   return (
-    <section className="py-16">
+    <section className="py-16 bg-navy-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <Flame size={18} className="text-gold-400" />
-              <p className="text-gold-400 uppercase tracking-widest text-sm font-semibold">Más Vendidos</p>
-            </div>
-            <h2 className="text-2xl font-black text-white">Top Péptidos</h2>
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 mb-2">
+            <Flame size={18} className="text-gold-400" />
+            <p className="text-gold-400 uppercase tracking-widest text-sm font-semibold">Más Vendidos</p>
           </div>
-          <div className="flex gap-2">
-            <button
-              onClick={() => scroll(-1)}
-              disabled={!canScrollLeft}
-              className="w-10 h-10 rounded-full border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500/10 disabled:opacity-30 transition-colors"
-            >
-              <ChevronLeft size={18} />
-            </button>
-            <button
-              onClick={() => scroll(1)}
-              disabled={!canScrollRight}
-              className="w-10 h-10 rounded-full border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500/10 disabled:opacity-30 transition-colors"
-            >
-              <ChevronRight size={18} />
-            </button>
-          </div>
+          <h2 className="text-3xl font-black text-white">Top Péptidos</h2>
         </div>
 
-        <div
-          ref={scrollRef}
-          onScroll={checkScroll}
-          className="flex gap-4 overflow-x-auto scrollbar-hide pb-2"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {featured.map(product => (
-            <div key={product.id} className="card flex-shrink-0 w-64 flex flex-col hover:border-gold-500/40 transition-colors">
-              <div className="bg-navy-700 h-44 flex items-center justify-center relative">
+            <div key={product.id} className="card flex flex-col group hover:border-gold-500/40 transition-colors">
+              <div className="relative bg-navy-700 h-48 overflow-hidden">
                 {product.image_url ? (
-                  <img src={product.image_url} alt={product.name} className="w-full h-full object-cover" />
+                  <img
+                    src={product.image_url}
+                    alt={product.name}
+                    className="w-full h-full object-contain bg-white group-hover:scale-105 transition-transform duration-300"
+                  />
                 ) : (
-                  <FlaskConical size={48} className="text-gold-400/30" />
+                  <div className="w-full h-full flex items-center justify-center">
+                    <FlaskConical size={48} className="text-gold-400/30" />
+                  </div>
                 )}
                 <span className="absolute top-2 left-2 bg-gold-500 text-navy-900 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
                   <Flame size={10} /> TOP
                 </span>
               </div>
+
               <div className="p-4 flex flex-col gap-3 flex-1">
                 <div>
                   <p className="text-xs text-gold-400/70 uppercase tracking-wide mb-1">{product.category}</p>
-                  <h3 className="text-white font-bold text-sm leading-tight">{product.name}</h3>
+                  <h3 className="text-white font-bold leading-snug">{product.name}</h3>
+                  {product.description && (
+                    <p className="text-gray-400 text-xs mt-1 line-clamp-2">{product.description}</p>
+                  )}
                 </div>
-                <div className="mt-auto">
-                  <p className="text-gold-400 font-black text-lg mb-3">
+
+                <div className="mt-auto flex items-center justify-between mb-3">
+                  <span className="text-gold-400 font-black text-xl">
                     RD${Number(product.price).toLocaleString()}
-                  </p>
-                  <WhatsAppOrderButton product={product} />
+                  </span>
+                  <span className={`text-xs px-2 py-1 rounded-full font-medium ${
+                    product.stock > 10 ? 'bg-green-900/30 text-green-400' :
+                    product.stock > 0  ? 'bg-yellow-900/30 text-yellow-400' :
+                    'bg-red-900/30 text-red-400'
+                  }`}>
+                    {product.stock > 0 ? `${product.stock} disponibles` : 'Agotado'}
+                  </span>
                 </div>
+
+                <button
+                  onClick={() => addItem(product)}
+                  disabled={product.stock === 0}
+                  className="flex items-center justify-center gap-2 bg-navy-700 hover:bg-navy-600 border border-navy-600 hover:border-gold-500/50 text-gray-200 font-semibold px-4 py-2.5 rounded-lg transition-colors w-full text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  <ShoppingCart size={15} />
+                  {product.stock === 0 ? 'Agotado' : 'Agregar al pedido'}
+                </button>
+                <Link
+                  to={`/products/${product.id}`}
+                  className="text-center text-xs text-gray-500 hover:text-gold-400 transition-colors py-1"
+                >
+                  Ver detalles →
+                </Link>
               </div>
             </div>
           ))}
