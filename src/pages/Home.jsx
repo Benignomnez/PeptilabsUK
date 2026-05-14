@@ -33,11 +33,15 @@ export default function Home() {
 
   return (
     <>
-      {/* Promo Banner */}
-      <div className="bg-gold-500 py-2 px-4 text-center">
-        <p className="text-xs text-navy-900 font-bold tracking-wide">
-          🚚 Envío discreto garantizado desde Reino Unido 🇬🇧 &nbsp;·&nbsp; 🔬 Pureza &gt;99% certificada HPLC &nbsp;·&nbsp; ✅ Tracking incluido en todos los pedidos
-        </p>
+      {/* Promo Banner — ticker continuo */}
+      <div className="bg-gold-500 py-2 overflow-hidden marquee-track">
+        <div className="animate-marquee">
+          {[0, 1].map(i => (
+            <span key={i} className="flex items-center whitespace-nowrap text-xs text-navy-900 font-bold tracking-wide px-4">
+              🚚 Envío discreto garantizado desde Reino Unido 🇬🇧 &nbsp;·&nbsp; 🔬 Pureza &gt;99% certificada HPLC &nbsp;·&nbsp; ✅ Tracking incluido en todos los pedidos &nbsp;·&nbsp; 💊 +43 péptidos disponibles &nbsp;·&nbsp; 🏆 Certificado GMP · Analizado HPLC &nbsp;·&nbsp; 📦 Cadena de frío controlada &nbsp;·&nbsp;
+            </span>
+          ))}
+        </div>
       </div>
 
       {/* Hero */}
@@ -108,24 +112,27 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: Floating vial visual */}
+          {/* Right: Vial image */}
           <div className="hidden lg:flex items-center justify-center">
             <div className="relative">
-              <div className="w-72 h-72 rounded-full bg-gradient-to-br from-gold-500/10 to-navy-700/30 border border-gold-500/20 flex items-center justify-center">
-                <div className="w-52 h-52 rounded-full bg-gradient-to-br from-navy-800 to-navy-700 border border-gold-500/30 flex items-center justify-center shadow-2xl">
-                  <div className="text-center">
-                    <FlaskConical size={56} className="text-gold-400 mx-auto mb-2" />
-                    <p className="text-white font-black text-base">PEPTILABS<span className="text-gold-400">®</span></p>
-                    <p className="text-gold-400/60 text-xs tracking-widest mt-1">PHARMACEUTICAL</p>
-                  </div>
+              <div className="relative w-80 h-96 rounded-2xl overflow-hidden border border-gold-500/20 shadow-2xl">
+                <img
+                  src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&q=85&auto=format&fit=crop"
+                  alt="Viales de péptidos farmacéuticos"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-white text-xs font-black uppercase tracking-widest">PEPTILABS<span className="text-gold-400">®</span></p>
+                  <p className="text-gold-400/70 text-xs tracking-widest">Grado Farmacéutico · Reino Unido</p>
                 </div>
               </div>
               <div className="absolute -top-4 -right-4 bg-gold-500 text-navy-900 rounded-full p-3 shadow-xl">
                 <Award size={22} />
               </div>
-              <div className="absolute -bottom-2 -left-6 bg-navy-800 border border-gold-500/30 rounded-xl px-4 py-2 shadow-xl">
+              <div className="absolute -bottom-4 -left-6 bg-navy-800 border border-gold-500/30 rounded-xl px-4 py-3 shadow-xl">
                 <p className="text-white text-xs font-bold">🔬 Verificado HPLC</p>
-                <p className="text-gold-400 text-xs">Cada lote analizado</p>
+                <p className="text-gold-400 text-xs">Cada lote analizado individualmente</p>
               </div>
             </div>
           </div>
