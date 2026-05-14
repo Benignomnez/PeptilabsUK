@@ -4,10 +4,10 @@ import { FlaskConical, MessageCircle, Instagram, Send } from 'lucide-react'
 export default function Footer() {
   return (
     <footer className="bg-navy-950 border-t border-gold-500/20 mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
 
         {/* Brand */}
-        <div className="md:col-span-1">
+        <div>
           <div className="flex items-center gap-2 mb-4">
             <FlaskConical className="text-gold-400" size={20} />
             <span className="font-black text-lg">
@@ -16,7 +16,7 @@ export default function Footer() {
             </span>
           </div>
           <p className="text-gray-400 text-sm leading-relaxed mb-4">
-            Pharmaceutical grade peptide research. Shipped from the United Kingdom 🇬🇧
+            Investigación peptídica de grado farmacéutico. Enviado desde el Reino Unido 🇬🇧
           </p>
           <p className="text-gold-400/70 text-xs italic">
             Ciencia que transforma • Calidad que se siente
@@ -27,25 +27,13 @@ export default function Footer() {
         <div>
           <h4 className="text-gold-400 font-semibold uppercase tracking-wider text-sm mb-4">Enlaces Rápidos</h4>
           <ul className="space-y-2 text-sm text-gray-400">
-            <li><Link to="/" className="hover:text-gold-400 transition-colors">Home</Link></li>
+            <li><Link to="/" className="hover:text-gold-400 transition-colors">Inicio</Link></li>
             <li><Link to="/products" className="hover:text-gold-400 transition-colors">Todos los Productos</Link></li>
             <li><Link to="/about" className="hover:text-gold-400 transition-colors">Sobre Nosotros</Link></li>
             <li><Link to="/products?cat=Regeneraci%C3%B3n+%26+Salud" className="hover:text-gold-400 transition-colors">Regeneración & Salud</Link></li>
             <li><Link to="/products?cat=P%C3%A9rdida+de+Grasa+%26+Metabolismo" className="hover:text-gold-400 transition-colors">Pérdida de Grasa</Link></li>
             <li><Link to="/products?cat=Hormonales+%26+Crecimiento" className="hover:text-gold-400 transition-colors">Hormonales & Crecimiento</Link></li>
             <li><Link to="/products?cat=Est%C3%A9tica+%26+Anti-Aging" className="hover:text-gold-400 transition-colors">Estética & Anti-Aging</Link></li>
-          </ul>
-        </div>
-
-        {/* Info */}
-        <div>
-          <h4 className="text-gold-400 font-semibold uppercase tracking-wider text-sm mb-4">Información</h4>
-          <ul className="space-y-2 text-sm text-gray-400">
-            <li className="hover:text-gold-400 transition-colors cursor-pointer">About PeptiLabs</li>
-            <li className="hover:text-gold-400 transition-colors cursor-pointer">Shipping Policy</li>
-            <li className="hover:text-gold-400 transition-colors cursor-pointer">Quality & Purity</li>
-            <li className="hover:text-gold-400 transition-colors cursor-pointer">Research Disclaimer</li>
-            <li className="hover:text-gold-400 transition-colors cursor-pointer">Contact Us</li>
           </ul>
         </div>
 
