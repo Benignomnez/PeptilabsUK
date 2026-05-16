@@ -6,10 +6,27 @@ import { useCart } from '../context/CartContext'
 const WHATSAPP_NUMBER = '8499255780'
 
 function buildMessage(items, total) {
-  const lines = items.map(({ product, qty }) =>
-    `• ${product.name} x${qty} — RD$${Number(product.price * qty).toLocaleString()}`
-  ).join('\n')
-  return `Hola, quisiera realizar el siguiente pedido:\n\n${lines}\n\n*Total: RD$${Number(total).toLocaleString()}*\n\n¿Pueden confirmar disponibilidad?`
+  const lines = items.map(({ product, qty }) => {
+    const subtotal = Number(product.price * qty).toLocaleString()
+    const unit = Number(product.price).toLocaleString()
+    return `▸ *${product.name}*\n   ${qty} ud${qty > 1 ? 's' : ''} × RD$${unit} = *RD$${subtotal}*`
+  }).join('\n\n')
+
+  return (
+    `🧪 *NUEVO PEDIDO — PEPTILABS UK* 🇬🇧\n` +
+    `━━━━━━━━━━━━━━━━━━━━━\n\n` +
+    `📦 *DETALLE DEL PEDIDO:*\n\n` +
+    `${lines}\n\n` +
+    `━━━━━━━━━━━━━━━━━━━━━\n` +
+    `💰 *TOTAL ESTIMADO: RD$${Number(total).toLocaleString()}*\n` +
+    `━━━━━━━━━━━━━━━━━━━━━\n\n` +
+    `✅ Pureza >99% | Certificado GMP\n` +
+    `🚚 Envío discreto desde Reino Unido 🇬🇧\n\n` +
+    `👋 *Por favor confirmar:*\n` +
+    `1. Disponibilidad de productos\n` +
+    `2. Dirección de entrega\n` +
+    `3. Método de pago preferido`
+  )
 }
 
 export default function CartDrawer() {
