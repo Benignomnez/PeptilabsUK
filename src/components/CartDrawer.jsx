@@ -64,20 +64,21 @@ export default function CartDrawer() {
         `${product.name} × ${qty} = RD$${Number(product.price * qty).toLocaleString()}`
       ).join(' | ')
 
+      const formData = new FormData()
+      formData.append('_subject', `🛒 Nuevo Pedido de ${contact.name} — RD$${Number(totalPrice).toLocaleString()}`)
+      if (contact.email) formData.append('_replyto', contact.email)
+      if (contact.email) formData.append('email', contact.email)
+      formData.append('nombre', contact.name)
+      formData.append('telefono', contact.phone)
+      formData.append('nota', contact.note || '—')
+      formData.append('productos', itemsSummary)
+      formData.append('total', `RD$${Number(totalPrice).toLocaleString()}`)
+      formData.append('detalle', orderText)
+
       const res = await fetch(FORMSPREE_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          _subject: `🛒 Nuevo Pedido de ${contact.name} — RD$${Number(totalPrice).toLocaleString()}`,
-          _replyto: contact.email || contact.phone,
-          email: contact.email || '(no proporcionado)',
-          nombre: contact.name,
-          telefono: contact.phone,
-          nota: contact.note || '—',
-          productos: itemsSummary,
-          total: `RD$${Number(totalPrice).toLocaleString()}`,
-          detalle: orderText,
-        }),
+        headers: { Accept: 'application/json' },
+        body: formData,
       })
       if (res.ok) {
         clearCart()
