@@ -1,28 +1,28 @@
-import { useEffect } from 'react'
-import { X, Plus, Minus, Trash2, ShoppingCart, MessageCircle, FlaskConical, ArrowRight } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { X, Plus, Minus, Trash2, ShoppingCart, Mail, FlaskConical, ArrowRight, Loader2, CheckCircle, AlertCircle } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 
-const WHATSAPP_NUMBER = '8499255780'
+const FORMSPREE_URL = 'https://formspree.io/f/mredzbbv'
 
-function buildMessage(items, total) {
+function buildOrderText(items, total) {
   const lines = items.map(({ product, qty }) => {
     const subtotal = Number(product.price * qty).toLocaleString()
     const unit = Number(product.price).toLocaleString()
-    return `▸ *${product.name}*\n   ${qty} ud${qty > 1 ? 's' : ''} × RD$${unit} = *RD$${subtotal}*`
+    return `• ${product.name}\n  ${qty} ud${qty > 1 ? 's' : ''} × RD$${unit} = RD$${subtotal}`
   }).join('\n\n')
 
   return (
-    `🧪 *NUEVO PEDIDO — PEPTILABS UK* 🇬🇧\n` +
-    `━━━━━━━━━━━━━━━━━━━━━\n\n` +
-    `📦 *DETALLE DEL PEDIDO:*\n\n` +
+    `NUEVO PEDIDO — PEPTILABS UK\n` +
+    `${'─'.repeat(30)}\n\n` +
+    `DETALLE DEL PEDIDO:\n\n` +
     `${lines}\n\n` +
-    `━━━━━━━━━━━━━━━━━━━━━\n` +
-    `💰 *TOTAL ESTIMADO: RD$${Number(total).toLocaleString()}*\n` +
-    `━━━━━━━━━━━━━━━━━━━━━\n\n` +
-    `✅ Pureza >99% | Certificado GMP\n` +
-    `🚚 Envío discreto desde Reino Unido 🇬🇧\n\n` +
-    `👋 *Por favor confirmar:*\n` +
+    `${'─'.repeat(30)}\n` +
+    `TOTAL ESTIMADO: RD$${Number(total).toLocaleString()}\n` +
+    `${'─'.repeat(30)}\n\n` +
+    `Pureza >99% | Certificado GMP\n` +
+    `Envío discreto desde Reino Unido\n\n` +
+    `Por favor confirmar:\n` +
     `1. Disponibilidad de productos\n` +
     `2. Dirección de entrega\n` +
     `3. Método de pago preferido`
@@ -32,14 +32,51 @@ function buildMessage(items, total) {
 export default function CartDrawer() {
   const { items, open, setOpen, removeItem, updateQty, clearCart, totalItems, totalPrice } = useCart()
   const { pathname, search } = useLocation()
+  const [sending, setSending] = useState(false)
+  const [sent, setSent] = useState(false)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     setOpen(false)
   }, [pathname, search])
 
-  function sendOrder() {
-    const msg = buildMessage(items, totalPrice)
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank')
+  useEffect(() => {
+    if (!open) {
+      setSent(false)
+      setError(false)
+    }
+  }, [open])
+
+  async function sendOrder() {
+    setSending(true)
+    setError(false)
+    try {
+      const orderText = buildOrderText(items, totalPrice)
+      const itemsSummary = items.map(({ product, qty }) =>
+        `${product.name} × ${qty} = RD$${Number(product.price * qty).toLocaleString()}`
+      ).join(', ')
+
+      const res = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          subject: `Nuevo Pedido PeptilabsUK — RD$${Number(totalPrice).toLocaleString()}`,
+          productos: itemsSummary,
+          total: `RD$${Number(totalPrice).toLocaleString()}`,
+          detalle: orderText,
+        }),
+      })
+      if (res.ok) {
+        setSent(true)
+        clearCart()
+      } else {
+        setError(true)
+      }
+    } catch {
+      setError(true)
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -138,27 +175,54 @@ export default function CartDrawer() {
         </div>
 
         {/* Footer */}
-        {items.length > 0 && (
+        {(items.length > 0 || sent) && (
           <div className="border-t border-gold-500/10 p-5 space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-gray-400 text-sm">Total estimado</span>
-              <span className="text-gold-400 font-black text-xl">RD${Number(totalPrice).toLocaleString()}</span>
-            </div>
-            <p className="text-gray-600 text-xs">El precio final se confirma por WhatsApp</p>
+            {sent ? (
+              <div className="flex flex-col items-center text-center py-4 gap-3">
+                <CheckCircle size={40} className="text-green-400" />
+                <p className="text-white font-bold text-base">¡Pedido Enviado!</p>
+                <p className="text-gray-400 text-sm">Recibimos tu pedido. Te contactaremos pronto para confirmar disponibilidad y coordinar el pago.</p>
+                <button
+                  onClick={() => setOpen(false)}
+                  className="btn-primary w-full py-3 text-sm mt-2"
+                >
+                  Cerrar
+                </button>
+              </div>
+            ) : (
+              <>
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-400 text-sm">Total estimado</span>
+                  <span className="text-gold-400 font-black text-xl">RD${Number(totalPrice).toLocaleString()}</span>
+                </div>
+                <p className="text-gray-600 text-xs">El precio final se confirma después de recibir tu pedido</p>
 
-            <button
-              onClick={sendOrder}
-              className="btn-primary w-full flex items-center justify-center gap-2 py-4 text-base"
-            >
-              <MessageCircle size={20} /> Enviar Pedido por WhatsApp
-            </button>
+                {error && (
+                  <div className="flex items-center gap-2 bg-red-900/20 border border-red-500/30 rounded-lg px-3 py-2">
+                    <AlertCircle size={16} className="text-red-400 shrink-0" />
+                    <p className="text-red-400 text-xs">Error al enviar. Intenta de nuevo.</p>
+                  </div>
+                )}
 
-            <button
-              onClick={clearCart}
-              className="w-full text-center text-xs text-gray-600 hover:text-red-400 transition-colors py-1"
-            >
-              Vaciar carrito
-            </button>
+                <button
+                  onClick={sendOrder}
+                  disabled={sending}
+                  className="btn-primary w-full flex items-center justify-center gap-2 py-4 text-base disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {sending
+                    ? <><Loader2 size={20} className="animate-spin" /> Enviando pedido...</>
+                    : <><Mail size={20} /> Enviar Pedido</>
+                  }
+                </button>
+
+                <button
+                  onClick={clearCart}
+                  className="w-full text-center text-xs text-gray-600 hover:text-red-400 transition-colors py-1"
+                >
+                  Vaciar carrito
+                </button>
+              </>
+            )}
           </div>
         )}
       </div>
