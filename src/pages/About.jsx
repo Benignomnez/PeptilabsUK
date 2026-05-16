@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { ShieldCheck, Microscope, Globe, Award, FlaskConical, CheckCircle, Users, Zap, MessageCircle } from 'lucide-react'
 import { WhatsAppFloating } from '../components/WhatsAppButton'
 
@@ -42,6 +43,14 @@ const certifications = [
 export default function About() {
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Sobre Nosotros | PeptiLabs UK® | 10+ Años en Investigación Peptídica</title>
+        <meta name="description" content="PeptiLabs UK — más de 10 años liderando investigación peptídica de grado farmacéutico. Certificados GMP, verificados HPLC. Comprometidos con la ciencia, la ética y la excelencia." />
+        <link rel="canonical" href="https://peptilabsuk.com/about" />
+        <meta property="og:title" content="Sobre PeptiLabs UK® | Investigación Peptídica Farmacéutica" />
+        <meta property="og:description" content="10+ años liderando investigación peptídica. Certificados GMP, verificados HPLC, envío discreto desde Reino Unido." />
+        <meta property="og:url" content="https://peptilabsuk.com/about" />
+      </Helmet>
 
       {/* Hero */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden">

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Search, FlaskConical, MessageCircle, Truck, ShieldCheck, User, Phone, Send, Loader2, CheckCircle } from 'lucide-react'
 import { useSearchParams } from 'react-router-dom'
 import ProductGrid from '../components/ProductGrid'
@@ -109,6 +110,15 @@ export default function Products() {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Catálogo de Péptidos | PeptiLabs UK® | +43 Péptidos Farmacéuticos</title>
+        <meta name="description" content="Explora nuestro catálogo de +43 péptidos de grado farmacéutico: BPC-157, TB-500, Tirzepatide, Semaglutide, CJC-1295 y más. Pureza >99% certificada. Envío desde UK 🇬🇧." />
+        <link rel="canonical" href="https://peptilabsuk.com/products" />
+        <meta property="og:title" content="Catálogo de Péptidos | PeptiLabs UK®" />
+        <meta property="og:description" content="+43 péptidos farmacéuticos certificados GMP. BPC-157, TB-500, Tirzepatide y más. Envío discreto desde Reino Unido." />
+        <meta property="og:url" content="https://peptilabsuk.com/products" />
+      </Helmet>
+
       {/* Header */}
       <div className="bg-navy-950 border-b border-gold-500/10 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">

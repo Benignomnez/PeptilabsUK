@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { ArrowLeft, FlaskConical, ShieldCheck, Truck, Award, MessageCircle, Package, CheckCircle, Loader2, ShoppingCart } from 'lucide-react'
 import { getProductById, getRelatedProducts } from '../services/products'
 import ProductCard from '../components/ProductCard'
@@ -86,8 +87,39 @@ export default function ProductDetail() {
   const waUrl = `https://wa.me/8499255780?text=${waMessage}`
   const inStock = product.stock > 0
 
+  const canonicalUrl = `https://peptilabsuk.com/products/${product.id}`
+  const pageTitle = `${product.name} | PeptiLabs UK® | Péptido Farmacéutico`
+  const pageDesc = product.description
+    ? `${product.description} Pureza >99% certificada HPLC. Envío discreto desde Reino Unido 🇬🇧. RD$${Number(product.price).toLocaleString()}.`
+    : `${product.name} — Péptido de grado farmacéutico. Pureza >99% certificada HPLC. Envío discreto desde Reino Unido. RD$${Number(product.price).toLocaleString()}.`
+
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDesc} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={`${product.name} | PeptiLabs UK®`} />
+        <meta property="og:description" content={pageDesc} />
+        <meta property="og:url" content={canonicalUrl} />
+        {product.image_url && <meta property="og:image" content={product.image_url} />}
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": product.name,
+          "description": product.description || pageDesc,
+          "image": product.image_url || "https://peptilabsuk.com/og-image.png",
+          "brand": { "@type": "Brand", "name": "PeptiLabs UK" },
+          "offers": {
+            "@type": "Offer",
+            "price": product.price,
+            "priceCurrency": "DOP",
+            "availability": inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+            "url": canonicalUrl,
+            "seller": { "@type": "Organization", "name": "PeptiLabs UK" }
+          }
+        })}</script>
+      </Helmet>
       {/* Breadcrumb */}
       <div className="bg-navy-950 border-b border-gold-500/10 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center gap-2 text-sm text-gray-500">

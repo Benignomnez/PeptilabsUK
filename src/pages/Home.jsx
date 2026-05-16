@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { ShieldCheck, Microscope, Sparkles, Globe, FlaskConical, CheckCircle, MessageCircle, Package, CreditCard, Truck } from 'lucide-react'
 import FeaturedCarousel from '../components/FeaturedCarousel'
 import Testimonials from '../components/Testimonials'
@@ -33,6 +34,15 @@ export default function Home() {
 
   return (
     <>
+      <Helmet>
+        <title>PeptiLabs UK® | Péptidos Farmacéuticos | Envío desde Reino Unido</title>
+        <meta name="description" content="Péptidos de grado farmacéutico con pureza >99%. BPC-157, TB-500, Tirzepatide, Semaglutide y más. Envío discreto desde Reino Unido 🇬🇧. Certificado GMP, analizado HPLC." />
+        <link rel="canonical" href="https://peptilabsuk.com/" />
+        <meta property="og:title" content="PeptiLabs UK® | Péptidos Farmacéuticos desde Reino Unido" />
+        <meta property="og:description" content="Péptidos de grado farmacéutico con pureza >99%. BPC-157, TB-500, Tirzepatide y más. Envío discreto desde UK 🇬🇧 con tracking incluido." />
+        <meta property="og:url" content="https://peptilabsuk.com/" />
+      </Helmet>
+
       {/* Promo Banner — ticker continuo */}
       <div className="bg-gold-500 py-2 overflow-hidden marquee-track">
         <div className="animate-marquee">
