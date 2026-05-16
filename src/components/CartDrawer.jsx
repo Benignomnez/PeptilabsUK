@@ -67,7 +67,7 @@ export default function CartDrawer() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          subject: `Pedido de ${contact.name} — RD$${Number(totalPrice).toLocaleString()}`,
+          _subject: `🛒 Nuevo Pedido de ${contact.name} — RD$${Number(totalPrice).toLocaleString()}`,
           nombre: contact.name,
           telefono: contact.phone,
           nota: contact.note || '—',
@@ -80,9 +80,12 @@ export default function CartDrawer() {
         clearCart()
         setStep('success')
       } else {
+        const body = await res.json().catch(() => ({}))
+        console.error('Formspree error:', res.status, body)
         setError(true)
       }
-    } catch {
+    } catch (err) {
+      console.error('Formspree fetch failed:', err)
       setError(true)
     } finally {
       setSending(false)
