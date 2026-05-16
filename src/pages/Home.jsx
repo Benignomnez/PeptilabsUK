@@ -63,115 +63,52 @@ export default function Home() {
         <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-gold-500/5 blur-3xl" />
         <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-gold-500/5 blur-3xl" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-24 grid lg:grid-cols-2 gap-12 items-center w-full">
-          <div>
-            <div className="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs px-4 py-2 rounded-full mb-6 uppercase tracking-widest font-semibold">
-              🇬🇧 Grado Farmacéutico · Enviado desde Reino Unido
-            </div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-none mb-3">
-              PEPTI<span className="text-gold-400">LABS</span><span className="text-gold-400 text-3xl align-super">®</span>
-            </h1>
-            <p className="text-gold-400/80 uppercase tracking-widest text-sm font-bold mb-2">
-              Investigación Peptídica de Grado Farmacéutico
-            </p>
-            <div className="w-16 h-0.5 bg-gold-500 mb-6" />
-            <p className="text-gray-300 text-lg leading-relaxed mb-8 max-w-lg">
-              Péptidos de la más alta calidad farmacéutica. Investigados, producidos y enviados desde el <strong className="text-white">Reino Unido 🇬🇧</strong> con los estándares más exigentes del mundo.
-            </p>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 py-32 w-full text-center">
+          <div className="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs px-4 py-2 rounded-full mb-8 uppercase tracking-widest font-semibold">
+            🇬🇧 Grado Farmacéutico · Enviado desde Reino Unido
+          </div>
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black text-white leading-none mb-4">
+            PEPTI<span className="text-gold-400">LABS</span><span className="text-gold-400 text-3xl align-super">®</span>
+          </h1>
+          <p className="text-gold-400/80 uppercase tracking-widest text-sm font-bold mb-3">
+            Investigación Peptídica de Grado Farmacéutico
+          </p>
+          <div className="w-16 h-0.5 bg-gold-500 mx-auto mb-8" />
+          <p className="text-gray-300 text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
+            Péptidos de la más alta calidad farmacéutica. Investigados, producidos y enviados desde el <strong className="text-white">Reino Unido 🇬🇧</strong> con los estándares más exigentes del mundo.
+          </p>
 
-            {/* Quick trust indicators */}
-            <div className="flex flex-wrap gap-3 mb-8">
-              {['✓ Certificado GMP', '✓ Analizado HPLC', '✓ Envío Discreto', '✓ +99% Pureza'].map(item => (
-                <span key={item} className="text-xs text-gold-400 bg-gold-500/10 border border-gold-500/20 px-3 py-1.5 rounded-full font-semibold">
-                  {item}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/products" className="btn-primary text-center text-base flex items-center justify-center gap-2">
-                <FlaskConical size={18} /> Explorar Productos
-              </Link>
-              <a
-                href="https://wa.me/8499255780?text=Hola%2C+me+interesa+conocer+más+sobre+sus+péptidos."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary text-center text-base flex items-center justify-center gap-2"
-              >
-                <MessageCircle size={18} /> Hablar con Especialista
-              </a>
-            </div>
-
-            <div className="flex items-center gap-6 mt-10 pt-10 border-t border-gold-500/10">
-              {[['10+', 'Años Investigación'], ['43+', 'Péptidos Disponibles'], ['99%', 'Pureza Mínima']].map(([val, label]) => (
-                <div key={label} className="text-center">
-                  <p className="text-gold-400 font-black text-2xl">{val}</p>
-                  <p className="text-gray-500 text-xs mt-0.5">{label}</p>
-                </div>
-              ))}
-            </div>
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
+            {['✓ Certificado GMP', '✓ Analizado HPLC', '✓ Envío Discreto', '✓ +99% Pureza'].map(item => (
+              <span key={item} className="text-xs text-gold-400 bg-gold-500/10 border border-gold-500/20 px-3 py-1.5 rounded-full font-semibold">
+                {item}
+              </span>
+            ))}
           </div>
 
-          {/* Right: Brand gradient visual */}
-          <div className="hidden lg:flex items-center justify-center">
-            <div className="relative w-96 h-[480px]">
-              {/* Main gradient card */}
-              <div className="w-full h-full rounded-3xl overflow-hidden relative"
-                style={{
-                  background: 'linear-gradient(135deg, #0a0e1a 0%, #0f1b2d 40%, #1a2a1a 70%, #0d1f0d 100%)',
-                  boxShadow: '0 0 80px rgba(212,175,55,0.15), inset 0 0 80px rgba(212,175,55,0.03)'
-                }}>
-                {/* Gold glow top */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full blur-3xl"
-                  style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%)' }} />
-                {/* Gold glow bottom */}
-                <div className="absolute bottom-0 right-0 w-48 h-48 rounded-full blur-3xl"
-                  style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%)' }} />
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <Link to="/products" className="btn-primary text-center text-base flex items-center justify-center gap-2">
+              <FlaskConical size={18} /> Explorar Productos
+            </Link>
+            <a
+              href="https://wa.me/8499255780?text=Hola%2C+me+interesa+conocer+más+sobre+sus+péptidos."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary text-center text-base flex items-center justify-center gap-2"
+            >
+              <MessageCircle size={18} /> Hablar con Especialista
+            </a>
+          </div>
 
-                {/* Border glow */}
-                <div className="absolute inset-0 rounded-3xl border border-gold-500/20" />
-
-                {/* Center content */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 px-8">
-                  {/* Logo mark */}
-                  <div className="flex flex-col items-center gap-3">
-                    <div className="w-20 h-20 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center">
-                      <FlaskConical size={40} className="text-gold-400" />
-                    </div>
-                    <div className="text-center">
-                      <p className="text-white font-black text-2xl tracking-tight">PEPTI<span className="text-gold-400">LABS</span><span className="text-gold-400 text-sm align-super">®</span></p>
-                      <p className="text-gold-400/60 text-xs tracking-widest uppercase mt-1">Pharmaceutical Grade</p>
-                    </div>
-                  </div>
-
-                  {/* Divider */}
-                  <div className="w-16 h-px bg-gold-500/30" />
-
-                  {/* Stats grid */}
-                  <div className="grid grid-cols-2 gap-3 w-full">
-                    {[
-                      { val: '>99%', label: 'Pureza', icon: '🔬' },
-                      { val: 'GMP', label: 'Certificado', icon: '🏆' },
-                      { val: 'HPLC', label: 'Verificado', icon: '📊' },
-                      { val: 'UK 🇬🇧', label: 'Origen', icon: '📦' },
-                    ].map(({ val, label, icon }) => (
-                      <div key={label} className="bg-navy-900/60 border border-gold-500/10 rounded-xl p-3 text-center backdrop-blur-sm">
-                        <p className="text-lg mb-0.5">{icon}</p>
-                        <p className="text-gold-400 font-black text-sm">{val}</p>
-                        <p className="text-gray-500 text-xs">{label}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Bottom badge */}
-                  <div className="flex items-center gap-2 bg-gold-500/10 border border-gold-500/20 rounded-full px-4 py-2">
-                    <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                    <span className="text-gray-300 text-xs font-semibold">Envíos activos · Reino Unido</span>
-                  </div>
-                </div>
+          <div className="flex items-center justify-center gap-12 pt-10 border-t border-gold-500/10">
+            {[['10+', 'Años Investigación'], ['43+', 'Péptidos Disponibles'], ['99%', 'Pureza Mínima']].map(([val, label]) => (
+              <div key={label} className="text-center">
+                <p className="text-gold-400 font-black text-3xl">{val}</p>
+                <p className="text-gray-500 text-xs mt-1 uppercase tracking-wider">{label}</p>
               </div>
-            </div>
+            ))}
           </div>
+
         </div>
       </section>
 
