@@ -46,15 +46,11 @@ export default function ProductCard({ product }) {
           <span className="text-xl font-black text-gold-400">
             RD${Number(product.price).toLocaleString()}
           </span>
-          <span className={`text-xs px-2 py-1 rounded-full font-medium ${
-            product.stock > 10
-              ? 'bg-green-900/30 text-green-400'
-              : product.stock > 0
-              ? 'bg-yellow-900/30 text-yellow-400'
-              : 'bg-red-900/30 text-red-400'
-          }`}>
-            {product.stock > 0 ? `${product.stock} disponibles` : 'Agotado'}
-          </span>
+          {product.stock === 0 && (
+            <span className="text-xs px-2 py-1 rounded-full font-medium bg-red-900/30 text-red-400">
+              Agotado
+            </span>
+          )}
         </div>
 
         <button
