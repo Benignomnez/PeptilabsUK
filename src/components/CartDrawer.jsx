@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { X, Plus, Minus, Trash2, ShoppingCart, Mail, FlaskConical, ArrowRight, Loader2, CheckCircle, AlertCircle, ArrowLeft, User, Phone, MessageSquare } from 'lucide-react'
+import { X, Plus, Minus, Trash2, ShoppingCart, Mail, FlaskConical, ArrowRight, Loader2, CheckCircle, AlertCircle, ArrowLeft, User, Phone, MessageSquare, AtSign } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 
@@ -18,6 +18,7 @@ function buildOrderText(items, total, contact) {
     `CLIENTE:\n` +
     `  Nombre: ${contact.name}\n` +
     `  Teléfono / WhatsApp: ${contact.phone}\n` +
+    (contact.email ? `  Email: ${contact.email}\n` : '') +
     (contact.note ? `  Nota: ${contact.note}\n` : '') +
     `\n${'─'.repeat(30)}\n\n` +
     `DETALLE DEL PEDIDO:\n\n` +
@@ -28,7 +29,7 @@ function buildOrderText(items, total, contact) {
   )
 }
 
-const EMPTY_CONTACT = { name: '', phone: '', note: '' }
+const EMPTY_CONTACT = { name: '', phone: '', email: '', note: '' }
 
 export default function CartDrawer() {
   const { items, open, setOpen, removeItem, updateQty, clearCart, totalItems, totalPrice } = useCart()
@@ -68,6 +69,8 @@ export default function CartDrawer() {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           _subject: `🛒 Nuevo Pedido de ${contact.name} — RD$${Number(totalPrice).toLocaleString()}`,
+          _replyto: contact.email || contact.phone,
+          email: contact.email || '(no proporcionado)',
           nombre: contact.name,
           telefono: contact.phone,
           nota: contact.note || '—',
@@ -267,6 +270,23 @@ export default function CartDrawer() {
                     placeholder="Ej. 809-555-0000"
                     value={contact.phone}
                     onChange={e => setContact(c => ({ ...c, phone: e.target.value }))}
+                    className="w-full bg-navy-800 border border-navy-600 focus:border-gold-500/60 text-white placeholder-gray-600 rounded-lg pl-9 pr-4 py-2.5 text-sm outline-none transition-colors"
+                  />
+                </div>
+              </div>
+
+              {/* Email (optional) */}
+              <div>
+                <label className="block text-xs text-gray-400 font-semibold uppercase tracking-wider mb-1.5">
+                  Correo electrónico <span className="text-gray-600 font-normal">(opcional)</span>
+                </label>
+                <div className="relative">
+                  <AtSign size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+                  <input
+                    type="email"
+                    placeholder="tucorreo@ejemplo.com"
+                    value={contact.email}
+                    onChange={e => setContact(c => ({ ...c, email: e.target.value }))}
                     className="w-full bg-navy-800 border border-navy-600 focus:border-gold-500/60 text-white placeholder-gray-600 rounded-lg pl-9 pr-4 py-2.5 text-sm outline-none transition-colors"
                   />
                 </div>
