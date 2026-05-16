@@ -112,18 +112,63 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: Vial image */}
+          {/* Right: Brand gradient visual */}
           <div className="hidden lg:flex items-center justify-center">
-            <div className="relative w-80 h-96 rounded-2xl overflow-hidden border border-gold-500/20 shadow-2xl">
-              <img
-                src="https://images.unsplash.com/photo-1612277795421-9bc7706a4a34?w=800&q=85&auto=format&fit=crop"
-                alt="Viales de péptidos farmacéuticos"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-900/80 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-white text-xs font-black uppercase tracking-widest">PEPTILABS<span className="text-gold-400">®</span></p>
-                <p className="text-gold-400/70 text-xs tracking-widest">Grado Farmacéutico · Reino Unido</p>
+            <div className="relative w-96 h-[480px]">
+              {/* Main gradient card */}
+              <div className="w-full h-full rounded-3xl overflow-hidden relative"
+                style={{
+                  background: 'linear-gradient(135deg, #0a0e1a 0%, #0f1b2d 40%, #1a2a1a 70%, #0d1f0d 100%)',
+                  boxShadow: '0 0 80px rgba(212,175,55,0.15), inset 0 0 80px rgba(212,175,55,0.03)'
+                }}>
+                {/* Gold glow top */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full blur-3xl"
+                  style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%)' }} />
+                {/* Gold glow bottom */}
+                <div className="absolute bottom-0 right-0 w-48 h-48 rounded-full blur-3xl"
+                  style={{ background: 'radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%)' }} />
+
+                {/* Border glow */}
+                <div className="absolute inset-0 rounded-3xl border border-gold-500/20" />
+
+                {/* Center content */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 px-8">
+                  {/* Logo mark */}
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="w-20 h-20 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center">
+                      <FlaskConical size={40} className="text-gold-400" />
+                    </div>
+                    <div className="text-center">
+                      <p className="text-white font-black text-2xl tracking-tight">PEPTI<span className="text-gold-400">LABS</span><span className="text-gold-400 text-sm align-super">®</span></p>
+                      <p className="text-gold-400/60 text-xs tracking-widest uppercase mt-1">Pharmaceutical Grade</p>
+                    </div>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="w-16 h-px bg-gold-500/30" />
+
+                  {/* Stats grid */}
+                  <div className="grid grid-cols-2 gap-3 w-full">
+                    {[
+                      { val: '>99%', label: 'Pureza', icon: '🔬' },
+                      { val: 'GMP', label: 'Certificado', icon: '🏆' },
+                      { val: 'HPLC', label: 'Verificado', icon: '📊' },
+                      { val: 'UK 🇬🇧', label: 'Origen', icon: '📦' },
+                    ].map(({ val, label, icon }) => (
+                      <div key={label} className="bg-navy-900/60 border border-gold-500/10 rounded-xl p-3 text-center backdrop-blur-sm">
+                        <p className="text-lg mb-0.5">{icon}</p>
+                        <p className="text-gold-400 font-black text-sm">{val}</p>
+                        <p className="text-gray-500 text-xs">{label}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Bottom badge */}
+                  <div className="flex items-center gap-2 bg-gold-500/10 border border-gold-500/20 rounded-full px-4 py-2">
+                    <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                    <span className="text-gray-300 text-xs font-semibold">Envíos activos · Reino Unido</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
