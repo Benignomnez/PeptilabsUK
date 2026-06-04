@@ -84,7 +84,7 @@ export default function ProductDetail() {
 
   const info = CATEGORY_INFO[product.category] || CATEGORY_INFO['Otros & Especiales']
   const waMessage = encodeURIComponent(`Hola, me interesa el producto: ${product.name} (RD$${Number(product.price).toLocaleString()}). ¿Está disponible?`)
-  const waUrl = `https://wa.me/8499255780?text=${waMessage}`
+  const waUrl = `https://wa.me/9053244066?text=${waMessage}`
   const inStock = product.stock > 0
 
   const canonicalUrl = `https://peptilabsuk.com/products/${product.id}`

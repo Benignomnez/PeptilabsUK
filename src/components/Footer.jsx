@@ -41,7 +41,7 @@ export default function Footer() {
         <div>
           <h4 className="text-gold-400 font-semibold uppercase tracking-wider text-sm mb-4">Contacto</h4>
           <div className="flex flex-col gap-3">
-            <a href="https://wa.me/8499255780" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/9053244066" target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-3 text-sm text-gray-400 hover:text-gold-400 transition-colors">
               <MessageCircle size={18} className="text-green-400" /> Pedidos por WhatsApp
             </a>

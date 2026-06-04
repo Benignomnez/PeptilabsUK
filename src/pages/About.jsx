@@ -230,7 +230,7 @@ export default function About() {
               <FlaskConical size={18} /> Ver Catálogo Completo
             </Link>
             <a
-              href="https://wa.me/8499255780?text=Hola%2C+quisiera+más+información+sobre+PeptiLabs+UK."
+              href="https://wa.me/9053244066?text=Hola%2C+quisiera+más+información+sobre+PeptiLabs+UK."
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary flex items-center justify-center gap-2 text-base"
