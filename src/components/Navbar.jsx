@@ -29,7 +29,7 @@ export default function Navbar() {
           <NavLink to="/about" className={linkClass}>Nosotros</NavLink>
           <NavLink to="/admin" className={linkClass}>Admin</NavLink>
           <a
-            href={`https://wa.me/9053244066`}
+            href={`https://wa.me/8299098362`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary text-sm py-2 px-4"
@@ -63,7 +63,7 @@ export default function Navbar() {
           <NavLink to="/products" className={linkClass} onClick={() => setOpen(false)}>Productos</NavLink>
           <NavLink to="/about" className={linkClass} onClick={() => setOpen(false)}>Nosotros</NavLink>
           <NavLink to="/admin" className={linkClass} onClick={() => setOpen(false)}>Admin</NavLink>
-          <a href="https://wa.me/9053244066" target="_blank" rel="noopener noreferrer" className="btn-primary text-center text-sm">Ordenar Ahora</a>
+          <a href="https://wa.me/8299098362" target="_blank" rel="noopener noreferrer" className="btn-primary text-center text-sm">Ordenar Ahora</a>
         </div>
       )}
     </nav>
