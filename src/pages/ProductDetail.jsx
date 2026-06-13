@@ -22,9 +22,25 @@ const CATEGORY_INFO = {
   },
   'Pérdida de Grasa & Metabolismo': {
     icon: '⚡',
-    badge: 'Metabólico',
-    specs: ['Agonista de receptor GLP-1/GIP', 'Investigación metabólica avanzada', 'Estudios de composición corporal'],
-    context: 'Péptido de nueva generación utilizado en investigación metabólica. Actúa sobre receptores involucrados en la regulación del metabolismo energético.',
+    badge: 'GLP-1 / Metabólico',
+    specs: [
+      'Control del apetito y saciedad',
+      'Regulación del peso corporal',
+      'El mismo principio activo que Ozempic® / Mounjaro®',
+      'Grado farmacéutico certificado GMP',
+    ],
+    context: 'Análogo peptídico de los receptores GLP-1/GIP — el mismo mecanismo de acción de los tratamientos más utilizados para control de peso en el mundo. Pureza >99% certificada por HPLC. Enviado desde laboratorios certificados en Reino Unido.',
+  },
+  'GLP-1 & Pérdida de Peso': {
+    icon: '⚡',
+    badge: 'GLP-1',
+    specs: [
+      'Control del apetito y saciedad',
+      'Regulación del peso corporal',
+      'El mismo principio activo que Ozempic® / Mounjaro®',
+      'Grado farmacéutico certificado GMP',
+    ],
+    context: 'Análogo peptídico de los receptores GLP-1/GIP — el mismo mecanismo de acción de los tratamientos más utilizados para control de peso en el mundo. Pureza >99% certificada por HPLC. Enviado desde laboratorios certificados en Reino Unido.',
   },
   'Estética & Anti-Aging': {
     icon: '✨',
@@ -88,10 +104,15 @@ export default function ProductDetail() {
   const inStock = product.stock > 0
 
   const canonicalUrl = `https://peptilabsuk.com/products/${product.id}`
-  const pageTitle = `${product.name} | PeptiLabs UK® | Péptido Farmacéutico`
-  const pageDesc = product.description
-    ? `${product.description} Pureza >99% certificada HPLC. Envío discreto desde Reino Unido 🇬🇧. RD$${Number(product.price).toLocaleString()}.`
-    : `${product.name} — Péptido de grado farmacéutico. Pureza >99% certificada HPLC. Envío discreto desde Reino Unido. RD$${Number(product.price).toLocaleString()}.`
+  const isGLP1 = ['Pérdida de Grasa & Metabolismo', 'GLP-1 & Pérdida de Peso'].includes(product.category)
+  const pageTitle = isGLP1
+    ? `${product.name} en República Dominicana | PeptiLabs UK®`
+    : `${product.name} | PeptiLabs UK® | Péptido Farmacéutico`
+  const pageDesc = isGLP1
+    ? `Compra ${product.name} en República Dominicana. El mismo principio activo que Ozempic®/Mounjaro®. Pureza >99% certificada GMP. Entrega discreta en RD desde UK 🇬🇧. RD$${Number(product.price).toLocaleString()}.`
+    : product.description
+      ? `${product.description} Pureza >99% certificada HPLC. Envío discreto a República Dominicana desde Reino Unido 🇬🇧. RD$${Number(product.price).toLocaleString()}.`
+      : `${product.name} — Péptido farmacéutico con entrega en República Dominicana. Pureza >99% certificada HPLC. RD$${Number(product.price).toLocaleString()}.`
 
   return (
     <div className="min-h-screen">
