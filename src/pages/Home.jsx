@@ -101,7 +101,7 @@ export default function Home() {
               <FlaskConical size={18} /> Explorar Productos
             </Link>
             <a
-              href="https://wa.me/9053244066?text=Hola%2C+me+interesa+conocer+más+sobre+sus+péptidos."
+              href="https://wa.me/8299098362?text=Hola%2C+me+interesa+conocer+más+sobre+sus+péptidos."
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary text-center text-base flex items-center justify-center gap-2"
@@ -180,7 +180,7 @@ export default function Home() {
           </div>
           <div className="text-center mt-10">
             <a
-              href="https://wa.me/9053244066?text=Hola%2C+quiero+realizar+un+pedido."
+              href="https://wa.me/8299098362?text=Hola%2C+quiero+realizar+un+pedido."
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary inline-flex items-center gap-2 text-base"
@@ -238,7 +238,7 @@ export default function Home() {
               <FlaskConical size={18} /> Ver Todos los Productos
             </Link>
             <a
-              href="https://wa.me/9053244066"
+              href="https://wa.me/8299098362"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary flex items-center justify-center gap-2"
