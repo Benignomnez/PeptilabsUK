@@ -111,11 +111,11 @@ export default function Products() {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Catálogo de Péptidos | PeptiLabs UK® | +43 Péptidos Farmacéuticos</title>
-        <meta name="description" content="Explora nuestro catálogo de +43 péptidos de grado farmacéutico: BPC-157, TB-500, Tirzepatide, Semaglutide, CJC-1295 y más. Pureza >99% certificada. Envío desde UK 🇬🇧." />
+        <title>Comprar Péptidos en República Dominicana | PeptiLabs UK®</title>
+        <meta name="description" content="Catálogo completo de péptidos en República Dominicana: Tirzepatide, Semaglutide, Retatrutide, BPC-157, TB-500, CJC-1295 y más. GLP-1 certificados GMP. Entrega en RD desde UK 🇬🇧." />
         <link rel="canonical" href="https://peptilabsuk.com/products" />
-        <meta property="og:title" content="Catálogo de Péptidos | PeptiLabs UK®" />
-        <meta property="og:description" content="+43 péptidos farmacéuticos certificados GMP. BPC-157, TB-500, Tirzepatide y más. Envío discreto desde Reino Unido." />
+        <meta property="og:title" content="Comprar Péptidos en República Dominicana | PeptiLabs UK®" />
+        <meta property="og:description" content="Tirzepatide, Semaglutide, BPC-157 y +40 péptidos. Entrega en RD 🇩🇴. Certificado GMP, pureza >99%." />
         <meta property="og:url" content="https://peptilabsuk.com/products" />
       </Helmet>
 
