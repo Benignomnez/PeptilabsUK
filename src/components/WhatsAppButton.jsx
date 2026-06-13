@@ -1,6 +1,6 @@
 import { MessageCircle } from 'lucide-react'
 
-const WHATSAPP_NUMBER = '9053244066'
+const WHATSAPP_NUMBER = '8299098362'
 
 export function WhatsAppOrderButton({ product }) {
   const message = `Hola, estoy interesado en ordenar:\n\nProducto: ${product.name}\nPrecio: RD$${Number(product.price).toLocaleString()}\n\nPor favor indíqueme disponibilidad.`
