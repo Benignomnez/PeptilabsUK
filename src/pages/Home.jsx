@@ -35,11 +35,11 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>PeptiLabs UK® | Péptidos Farmacéuticos | Envío desde Reino Unido</title>
-        <meta name="description" content="Péptidos de grado farmacéutico con pureza >99%. BPC-157, TB-500, Tirzepatide, Semaglutide y más. Envío discreto desde Reino Unido 🇬🇧. Certificado GMP, analizado HPLC." />
+        <title>PeptiLabs UK® | Péptidos Farmacéuticos en República Dominicana</title>
+        <meta name="description" content="Compra péptidos de grado farmacéutico en República Dominicana. Tirzepatide, Semaglutide, BPC-157, TB-500 y más de 40 péptidos. Pureza >99%, certificado GMP. Envío discreto desde UK 🇬🇧." />
         <link rel="canonical" href="https://peptilabsuk.com/" />
-        <meta property="og:title" content="PeptiLabs UK® | Péptidos Farmacéuticos desde Reino Unido" />
-        <meta property="og:description" content="Péptidos de grado farmacéutico con pureza >99%. BPC-157, TB-500, Tirzepatide y más. Envío discreto desde UK 🇬🇧 con tracking incluido." />
+        <meta property="og:title" content="PeptiLabs UK® | Péptidos Farmacéuticos en República Dominicana" />
+        <meta property="og:description" content="Tirzepatide, Semaglutide, BPC-157 y +40 péptidos con entrega en RD. Pureza >99% certificada GMP. Envío discreto desde UK 🇬🇧." />
         <meta property="og:url" content="https://peptilabsuk.com/" />
       </Helmet>
 
