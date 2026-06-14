@@ -1,11 +1,28 @@
 import { useEffect, useState } from 'react'
-import { X, Plus, Minus, Trash2, ShoppingCart, Mail, FlaskConical, ArrowRight, Loader2, CheckCircle, AlertCircle, ArrowLeft, User, Phone, MessageSquare, AtSign } from 'lucide-react'
+import { X, Plus, Minus, Trash2, ShoppingCart, MessageCircle, FlaskConical, ArrowRight, Loader2, CheckCircle, AlertCircle, ArrowLeft, User, Phone, MessageSquare, AtSign } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 
 const FORMSPREE_URL = 'https://formspree.io/f/mredzbbv'
+const WHATSAPP_NUMBER = '8299098362'
 
-function buildOrderText(items, total, contact) {
+function buildWhatsAppText(items, total, contact) {
+  const lines = items.map(({ product, qty }) =>
+    `• ${product.name} × ${qty} = RD$${Number(product.price * qty).toLocaleString()}`
+  ).join('\n')
+
+  return (
+    `🛒 *NUEVO PEDIDO — PEPTILABS UK*\n\n` +
+    `👤 *Cliente:* ${contact.name}\n` +
+    `📱 *Tel:* ${contact.phone}\n` +
+    (contact.email ? `📧 *Email:* ${contact.email}\n` : '') +
+    (contact.note ? `📝 *Nota:* ${contact.note}\n` : '') +
+    `\n*Productos:*\n${lines}\n\n` +
+    `💰 *Total estimado: RD$${Number(total).toLocaleString()}*`
+  )
+}
+
+function buildEmailText(items, total, contact) {
   const lines = items.map(({ product, qty }) => {
     const subtotal = Number(product.price * qty).toLocaleString()
     const unit = Number(product.price).toLocaleString()
@@ -59,11 +76,11 @@ export default function CartDrawer() {
     setSending(true)
     setError(false)
     try {
-      const orderText = buildOrderText(items, totalPrice, contact)
       const itemsSummary = items.map(({ product, qty }) =>
         `${product.name} × ${qty} = RD$${Number(product.price * qty).toLocaleString()}`
       ).join(' | ')
 
+      // Backup: fire Formspree silently in background
       const formData = new FormData()
       formData.append('_subject', `🛒 Nuevo Pedido de ${contact.name} — RD$${Number(totalPrice).toLocaleString()}`)
       if (contact.email) formData.append('_replyto', contact.email)
@@ -73,23 +90,21 @@ export default function CartDrawer() {
       formData.append('nota', contact.note || '—')
       formData.append('productos', itemsSummary)
       formData.append('total', `RD$${Number(totalPrice).toLocaleString()}`)
-      formData.append('detalle', orderText)
-
-      const res = await fetch(FORMSPREE_URL, {
+      formData.append('detalle', buildEmailText(items, totalPrice, contact))
+      fetch(FORMSPREE_URL, {
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: formData,
-      })
-      if (res.ok) {
-        clearCart()
-        setStep('success')
-      } else {
-        const body = await res.json().catch(() => ({}))
-        console.error('Formspree error:', res.status, body)
-        setError(true)
-      }
+      }).catch(() => {})
+
+      // Primary: open WhatsApp with pre-filled order
+      const waText = encodeURIComponent(buildWhatsAppText(items, totalPrice, contact))
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`, '_blank')
+
+      clearCart()
+      setStep('success')
     } catch (err) {
-      console.error('Formspree fetch failed:', err)
+      console.error('Order error:', err)
       setError(true)
     } finally {
       setSending(false)
@@ -207,7 +222,7 @@ export default function CartDrawer() {
                   onClick={goToContact}
                   className="btn-primary w-full flex items-center justify-center gap-2 py-4 text-base"
                 >
-                  <Mail size={20} /> Enviar Pedido
+                  <MessageCircle size={20} /> Enviar Pedido por WhatsApp
                 </button>
                 <button
                   onClick={clearCart}
@@ -325,8 +340,8 @@ export default function CartDrawer() {
                 className="btn-primary w-full flex items-center justify-center gap-2 py-4 text-base disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {sending
-                  ? <><Loader2 size={20} className="animate-spin" /> Enviando...</>
-                  : <><Mail size={20} /> Confirmar Pedido</>
+                  ? <><Loader2 size={20} className="animate-spin" /> Abriendo WhatsApp...</>
+                  : <><MessageCircle size={20} /> Confirmar por WhatsApp</>
                 }
               </button>
             </div>
@@ -339,9 +354,9 @@ export default function CartDrawer() {
             <div className="w-16 h-16 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center">
               <CheckCircle size={36} className="text-green-400" />
             </div>
-            <p className="text-white font-black text-xl">¡Pedido Enviado!</p>
+            <p className="text-white font-black text-xl">¡WhatsApp Abierto!</p>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Recibimos tu pedido, <span className="text-white font-semibold">{contact.name}</span>. Te contactaremos al <span className="text-gold-400 font-semibold">{contact.phone}</span> para confirmar disponibilidad y coordinar el pago.
+              Tu pedido está listo en WhatsApp, <span className="text-white font-semibold">{contact.name}</span>. Solo presiona <span className="text-gold-400 font-semibold">Enviar</span> en WhatsApp para que lo recibamos y coordinemos contigo.
             </p>
             <button
               onClick={() => setOpen(false)}
