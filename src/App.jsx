@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Products from './pages/Products'
@@ -27,6 +28,7 @@ export default function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <SpeedInsights />
     </CartProvider>
   )
 }
