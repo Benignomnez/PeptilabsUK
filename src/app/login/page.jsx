@@ -1,10 +1,12 @@
+'use client'
+
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation'
 import { FlaskConical, Loader2 } from 'lucide-react'
-import { supabase } from '../services/supabase'
+import { supabase } from '../../services/supabase'
 
 export default function Login() {
-  const navigate = useNavigate()
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -18,7 +20,7 @@ export default function Login() {
     if (error) {
       setError(error.message)
     } else {
-      navigate('/admin')
+      router.push('/admin')
     }
     setLoading(false)
   }

@@ -1,5 +1,7 @@
+'use client'
+
 import { Flame, FlaskConical, ShoppingCart } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { useCart } from '../context/CartContext'
 
 export default function FeaturedCarousel({ products }) {
@@ -68,7 +70,7 @@ export default function FeaturedCarousel({ products }) {
                   {product.stock === 0 ? 'Agotado' : 'Agregar al pedido'}
                 </button>
                 <Link
-                  to={`/products/${product.id}`}
+                  href={`/products/${product.id}`}
                   className="text-center text-xs text-gray-500 hover:text-gold-400 transition-colors py-1"
                 >
                   Ver detalles →

@@ -1,6 +1,9 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { X, Plus, Minus, Trash2, ShoppingCart, MessageCircle, Mail, FlaskConical, ArrowRight, Loader2, CheckCircle, AlertCircle, ArrowLeft, User, Phone, MessageSquare, AtSign } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useCart } from '../context/CartContext'
 
 const FORMSPREE_URL = 'https://formspree.io/f/mredzbbv'
@@ -50,13 +53,13 @@ const EMPTY_CONTACT = { name: '', phone: '', email: '', note: '' }
 
 export default function CartDrawer() {
   const { items, open, setOpen, removeItem, updateQty, clearCart, totalItems, totalPrice } = useCart()
-  const { pathname, search } = useLocation()
+  const pathname = usePathname()
   const [step, setStep] = useState('cart') // 'cart' | 'contact' | 'success'
   const [contact, setContact] = useState(EMPTY_CONTACT)
   const [sending, setSending] = useState(false) // 'wa' | 'email' | false
   const [error, setError] = useState(false)
 
-  useEffect(() => { setOpen(false) }, [pathname, search])
+  useEffect(() => { setOpen(false) }, [pathname, setOpen])
 
   useEffect(() => {
     if (!open) {
@@ -180,7 +183,7 @@ export default function CartDrawer() {
                   <p className="text-gray-300 font-semibold text-lg">Tu pedido está vacío</p>
                   <p className="text-gray-500 text-sm mt-1 mb-8">Agrega productos desde el catálogo</p>
                   <Link
-                    to="/products"
+                    href="/products"
                     onClick={() => setOpen(false)}
                     className="btn-primary flex items-center gap-2 text-sm px-6 py-3"
                   >

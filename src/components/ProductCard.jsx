@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom'
+'use client'
+
+import Link from 'next/link'
 import { WhatsAppOrderButton } from './WhatsAppButton'
 import { FlaskConical, ShoppingCart } from 'lucide-react'
 import { useCart } from '../context/CartContext'
@@ -62,7 +64,7 @@ export default function ProductCard({ product }) {
           {product.stock === 0 ? 'Agotado' : 'Agregar al pedido'}
         </button>
         <Link
-          to={`/products/${product.id}`}
+          href={`/products/${product.id}`}
           className="text-center text-xs text-gray-500 hover:text-gold-400 transition-colors py-1"
         >
           Ver detalles →

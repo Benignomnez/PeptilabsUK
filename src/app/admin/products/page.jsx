@@ -1,6 +1,8 @@
+'use client'
+
 import { useState, useEffect, useRef } from 'react'
 import { Plus, Pencil, Trash2, Eye, EyeOff, Search, Loader2, X, Check, FlaskConical } from 'lucide-react'
-import { getAllProducts, updateProduct, createProduct, deleteProduct, uploadProductImage } from '../../services/products'
+import { getAllProducts, updateProduct, createProduct, deleteProduct, uploadProductImage } from '../../../services/products'
 
 const CATEGORIES = [
   'Regeneración & Salud',

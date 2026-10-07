@@ -1,7 +1,17 @@
-import { Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
-import { ShieldCheck, Microscope, Globe, Award, FlaskConical, CheckCircle, Users, Zap, MessageCircle } from 'lucide-react'
-import { WhatsAppFloating } from '../components/WhatsAppButton'
+import Link from 'next/link'
+import { ShieldCheck, Microscope, Globe, Award, FlaskConical, CheckCircle, Zap, MessageCircle } from 'lucide-react'
+import { WhatsAppFloating } from '../../../components/WhatsAppButton'
+
+export const metadata = {
+  title: 'Sobre Nosotros | PeptiLabs UK® | 10+ Años en Investigación Peptídica',
+  description: 'PeptiLabs UK — más de 10 años liderando investigación peptídica de grado farmacéutico. Certificados GMP, verificados HPLC. Comprometidos con la ciencia, la ética y la excelencia.',
+  alternates: { canonical: '/about' },
+  openGraph: {
+    title: 'Sobre PeptiLabs UK® | Investigación Peptídica Farmacéutica',
+    description: '10+ años liderando investigación peptídica. Certificados GMP, verificados HPLC, envío discreto desde Reino Unido.',
+    url: '/about',
+  },
+}
 
 const values = [
   {
@@ -43,15 +53,6 @@ const certifications = [
 export default function About() {
   return (
     <div className="min-h-screen">
-      <Helmet>
-        <title>Sobre Nosotros | PeptiLabs UK® | 10+ Años en Investigación Peptídica</title>
-        <meta name="description" content="PeptiLabs UK — más de 10 años liderando investigación peptídica de grado farmacéutico. Certificados GMP, verificados HPLC. Comprometidos con la ciencia, la ética y la excelencia." />
-        <link rel="canonical" href="https://peptilabsuk.com/about" />
-        <meta property="og:title" content="Sobre PeptiLabs UK® | Investigación Peptídica Farmacéutica" />
-        <meta property="og:description" content="10+ años liderando investigación peptídica. Certificados GMP, verificados HPLC, envío discreto desde Reino Unido." />
-        <meta property="og:url" content="https://peptilabsuk.com/about" />
-      </Helmet>
-
       {/* Hero */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
@@ -226,7 +227,7 @@ export default function About() {
           <h2 className="text-4xl font-black text-white mb-4">¿Tienes preguntas sobre nuestros productos?</h2>
           <p className="text-gray-400 mb-8 text-lg">Nuestro equipo de especialistas está disponible para orientarte sobre el péptido adecuado para tu investigación.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/products" className="btn-primary flex items-center justify-center gap-2 text-base">
+            <Link href="/products" className="btn-primary flex items-center justify-center gap-2 text-base">
               <FlaskConical size={18} /> Ver Catálogo Completo
             </Link>
             <a

@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
-import { ArrowLeft, FlaskConical, ShieldCheck, Truck, Award, MessageCircle, Package, CheckCircle, Loader2, ShoppingCart } from 'lucide-react'
-import { getProductById, getRelatedProducts } from '../services/products'
-import ProductCard from '../components/ProductCard'
-import { WhatsAppFloating } from '../components/WhatsAppButton'
+'use client'
+
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { ArrowLeft, FlaskConical, ShieldCheck, Truck, Award, MessageCircle, Package, CheckCircle, ShoppingCart } from 'lucide-react'
+import ProductCard from './ProductCard'
+import { WhatsAppFloating } from './WhatsAppButton'
 import { useCart } from '../context/CartContext'
 
 const CATEGORY_INFO = {
@@ -69,84 +69,23 @@ const SHIPPING_FEATURES = [
   { icon: Award, label: 'HPLC Verificado', sub: 'Cada lote analizado' },
 ]
 
-export default function ProductDetail() {
-  const { id } = useParams()
-  const navigate = useNavigate()
+export default function ProductDetailClient({ product, related }) {
+  const router = useRouter()
   const { addItem } = useCart()
-  const [product, setProduct] = useState(null)
-  const [related, setRelated] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    getProductById(id)
-      .then(p => {
-        setProduct(p)
-        return getRelatedProducts(p.category, p.id)
-      })
-      .then(setRelated)
-      .catch(() => navigate('/products', { replace: true }))
-      .finally(() => setLoading(false))
-  }, [id, navigate])
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 size={32} className="animate-spin text-gold-400" />
-      </div>
-    )
-  }
-
-  if (!product) return null
 
   const info = CATEGORY_INFO[product.category] || CATEGORY_INFO['Otros & Especiales']
   const waMessage = encodeURIComponent(`Hola, me interesa el producto: ${product.name} (RD$${Number(product.price).toLocaleString()}). ¿Está disponible?`)
   const waUrl = `https://wa.me/8299098362?text=${waMessage}`
   const inStock = product.stock > 0
 
-  const canonicalUrl = `https://peptilabsuk.com/products/${product.id}`
-  const isGLP1 = ['Pérdida de Grasa & Metabolismo', 'GLP-1 & Pérdida de Peso'].includes(product.category)
-  const pageTitle = isGLP1
-    ? `${product.name} en República Dominicana | PeptiLabs UK®`
-    : `${product.name} | PeptiLabs UK® | Péptido Farmacéutico`
-  const pageDesc = isGLP1
-    ? `Compra ${product.name} en República Dominicana. El mismo principio activo que Ozempic®/Mounjaro®. Pureza >99% certificada GMP. Entrega discreta en RD desde UK 🇬🇧. RD$${Number(product.price).toLocaleString()}.`
-    : product.description
-      ? `${product.description} Pureza >99% certificada HPLC. Envío discreto a República Dominicana desde Reino Unido 🇬🇧. RD$${Number(product.price).toLocaleString()}.`
-      : `${product.name} — Péptido farmacéutico con entrega en República Dominicana. Pureza >99% certificada HPLC. RD$${Number(product.price).toLocaleString()}.`
-
   return (
     <div className="min-h-screen">
-      <Helmet>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDesc} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={`${product.name} | PeptiLabs UK®`} />
-        <meta property="og:description" content={pageDesc} />
-        <meta property="og:url" content={canonicalUrl} />
-        {product.image_url && <meta property="og:image" content={product.image_url} />}
-        <script type="application/ld+json">{JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Product",
-          "name": product.name,
-          "description": product.description || pageDesc,
-          "image": product.image_url || "https://peptilabsuk.com/og-image.png",
-          "brand": { "@type": "Brand", "name": "PeptiLabs UK" },
-          "offers": {
-            "@type": "Offer",
-            "price": product.price,
-            "priceCurrency": "DOP",
-            "availability": inStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-            "url": canonicalUrl,
-            "seller": { "@type": "Organization", "name": "PeptiLabs UK" }
-          }
-        })}</script>
-      </Helmet>
       {/* Breadcrumb */}
       <div className="bg-navy-950 border-b border-gold-500/10 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center gap-2 text-sm text-gray-500">
-          <Link to="/" className="hover:text-gold-400 transition-colors">Inicio</Link>
+          <Link href="/" className="hover:text-gold-400 transition-colors">Inicio</Link>
           <span>/</span>
-          <Link to="/products" className="hover:text-gold-400 transition-colors">Productos</Link>
+          <Link href="/products" className="hover:text-gold-400 transition-colors">Productos</Link>
           <span>/</span>
           <span className="text-gray-300 truncate max-w-[200px]">{product.name}</span>
         </div>
@@ -155,7 +94,7 @@ export default function ProductDetail() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
         {/* Back button */}
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => router.back()}
           className="flex items-center gap-2 text-gray-400 hover:text-gold-400 transition-colors text-sm mb-8"
         >
           <ArrowLeft size={16} /> Volver al catálogo

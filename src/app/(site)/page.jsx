@@ -1,10 +1,20 @@
-import { Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
+import Link from 'next/link'
 import { ShieldCheck, Microscope, Sparkles, Globe, FlaskConical, CheckCircle, MessageCircle, Package, CreditCard, Truck } from 'lucide-react'
-import FeaturedCarousel from '../components/FeaturedCarousel'
-import Testimonials from '../components/Testimonials'
-import { WhatsAppFloating } from '../components/WhatsAppButton'
-import { useProducts } from '../hooks/useProducts'
+import FeaturedCarousel from '../../components/FeaturedCarousel'
+import Testimonials from '../../components/Testimonials'
+import { WhatsAppFloating } from '../../components/WhatsAppButton'
+import { getProducts } from '../../services/products'
+
+export const metadata = {
+  title: 'PeptiLabs UK® | Péptidos Farmacéuticos en República Dominicana',
+  description: 'Compra péptidos de grado farmacéutico en República Dominicana. Tirzepatide, Semaglutide, BPC-157, TB-500 y más de 40 péptidos. Pureza >99%, certificado GMP. Envío discreto desde UK 🇬🇧.',
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'PeptiLabs UK® | Péptidos Farmacéuticos en República Dominicana',
+    description: 'Tirzepatide, Semaglutide, BPC-157 y +40 péptidos con entrega en RD. Pureza >99% certificada GMP. Envío discreto desde UK 🇬🇧.',
+    url: '/',
+  },
+}
 
 const features = [
   { icon: ShieldCheck, title: 'Calidad Farmacéutica', desc: 'Cumplimos normas GMP (Good Manufacturing Practices).' },
@@ -29,20 +39,11 @@ const orderSteps = [
   { icon: Truck, step: '04', title: 'Recibe tu Pedido', desc: 'Envío discreto desde UK con número de tracking incluido.' },
 ]
 
-export default function Home() {
-  const { products, loading } = useProducts()
+export default async function Home() {
+  const products = await getProducts().catch(() => [])
 
   return (
     <>
-      <Helmet>
-        <title>PeptiLabs UK® | Péptidos Farmacéuticos en República Dominicana</title>
-        <meta name="description" content="Compra péptidos de grado farmacéutico en República Dominicana. Tirzepatide, Semaglutide, BPC-157, TB-500 y más de 40 péptidos. Pureza >99%, certificado GMP. Envío discreto desde UK 🇬🇧." />
-        <link rel="canonical" href="https://peptilabsuk.com/" />
-        <meta property="og:title" content="PeptiLabs UK® | Péptidos Farmacéuticos en República Dominicana" />
-        <meta property="og:description" content="Tirzepatide, Semaglutide, BPC-157 y +40 péptidos con entrega en RD. Pureza >99% certificada GMP. Envío discreto desde UK 🇬🇧." />
-        <meta property="og:url" content="https://peptilabsuk.com/" />
-      </Helmet>
-
       {/* Promo Banner — ticker continuo */}
       <div className="bg-gold-500 py-2 overflow-hidden marquee-track">
         <div className="animate-marquee">
@@ -56,7 +57,6 @@ export default function Home() {
 
       {/* Hero */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Background layers */}
         <div className="absolute inset-0 bg-navy-900" />
         <div
           className="absolute inset-0 opacity-20"
@@ -69,7 +69,6 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-900/90 to-navy-900/50" />
         <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-transparent" />
 
-        {/* Animated particles */}
         <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-gold-500/5 blur-3xl" />
         <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-gold-500/5 blur-3xl" />
 
@@ -97,7 +96,7 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Link to="/products" className="btn-primary text-center text-base flex items-center justify-center gap-2">
+            <Link href="/products" className="btn-primary text-center text-base flex items-center justify-center gap-2">
               <FlaskConical size={18} /> Explorar Productos
             </Link>
             <a
@@ -234,7 +233,7 @@ export default function Home() {
           <h2 className="text-3xl font-black text-white mb-4">¿Listo para empezar?</h2>
           <p className="text-gray-400 mb-8">Contacta con nuestros especialistas y recibe orientación personalizada sobre los péptidos ideales para tu investigación.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/products" className="btn-primary flex items-center justify-center gap-2">
+            <Link href="/products" className="btn-primary flex items-center justify-center gap-2">
               <FlaskConical size={18} /> Ver Todos los Productos
             </Link>
             <a
