@@ -1,6 +1,8 @@
+'use client'
+
 import { useState, useRef } from 'react'
 import { Upload, Download, CheckCircle, XCircle, Loader2, FileText } from 'lucide-react'
-import { createProduct } from '../../services/products'
+import { createProduct } from '../../../services/products'
 
 const TEMPLATE_HEADERS = ['name', 'description', 'price', 'stock', 'category', 'visible', 'featured']
 

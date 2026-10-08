@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { FlaskConical, MessageCircle, Instagram, Send } from 'lucide-react'
 
 export default function Footer() {
@@ -27,13 +27,13 @@ export default function Footer() {
         <div>
           <h4 className="text-gold-400 font-semibold uppercase tracking-wider text-sm mb-4">Enlaces Rápidos</h4>
           <ul className="space-y-2 text-sm text-gray-400">
-            <li><Link to="/" className="hover:text-gold-400 transition-colors">Inicio</Link></li>
-            <li><Link to="/products" className="hover:text-gold-400 transition-colors">Todos los Productos</Link></li>
-            <li><Link to="/about" className="hover:text-gold-400 transition-colors">Sobre Nosotros</Link></li>
-            <li><Link to="/products?cat=Regeneraci%C3%B3n+%26+Salud" className="hover:text-gold-400 transition-colors">Regeneración & Salud</Link></li>
-            <li><Link to="/products?cat=P%C3%A9rdida+de+Grasa+%26+Metabolismo" className="hover:text-gold-400 transition-colors">Pérdida de Grasa</Link></li>
-            <li><Link to="/products?cat=Hormonales+%26+Crecimiento" className="hover:text-gold-400 transition-colors">Hormonales & Crecimiento</Link></li>
-            <li><Link to="/products?cat=Est%C3%A9tica+%26+Anti-Aging" className="hover:text-gold-400 transition-colors">Estética & Anti-Aging</Link></li>
+            <li><Link href="/" className="hover:text-gold-400 transition-colors">Inicio</Link></li>
+            <li><Link href="/products" className="hover:text-gold-400 transition-colors">Todos los Productos</Link></li>
+            <li><Link href="/about" className="hover:text-gold-400 transition-colors">Sobre Nosotros</Link></li>
+            <li><Link href="/products?cat=Regeneraci%C3%B3n+%26+Salud" className="hover:text-gold-400 transition-colors">Regeneración & Salud</Link></li>
+            <li><Link href="/products?cat=P%C3%A9rdida+de+Grasa+%26+Metabolismo" className="hover:text-gold-400 transition-colors">Pérdida de Grasa</Link></li>
+            <li><Link href="/products?cat=Hormonales+%26+Crecimiento" className="hover:text-gold-400 transition-colors">Hormonales & Crecimiento</Link></li>
+            <li><Link href="/products?cat=Est%C3%A9tica+%26+Anti-Aging" className="hover:text-gold-400 transition-colors">Estética & Anti-Aging</Link></li>
           </ul>
         </div>
 

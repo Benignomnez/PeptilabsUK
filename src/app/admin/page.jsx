@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { Package, Eye, EyeOff, TrendingUp } from 'lucide-react'
 import { getAllProducts } from '../../services/products'

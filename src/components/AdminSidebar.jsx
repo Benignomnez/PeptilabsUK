@@ -1,20 +1,24 @@
-import { NavLink, useNavigate } from 'react-router-dom'
+'use client'
+
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import { FlaskConical, LayoutDashboard, Package, LogOut, Upload } from 'lucide-react'
 import { supabase } from '../services/supabase'
 
 export default function AdminSidebar() {
-  const navigate = useNavigate()
+  const router = useRouter()
+  const pathname = usePathname()
 
-  const linkClass = ({ isActive }) =>
-    `flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
-      isActive
-        ? 'bg-gold-500/20 text-gold-400'
-        : 'text-gray-400 hover:bg-navy-700 hover:text-white'
+  function linkClass(href, exact = false) {
+    const isActive = exact ? pathname === href : pathname.startsWith(href)
+    return `flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
+      isActive ? 'bg-gold-500/20 text-gold-400' : 'text-gray-400 hover:bg-navy-700 hover:text-white'
     }`
+  }
 
   async function handleLogout() {
     await supabase.auth.signOut()
-    navigate('/login')
+    router.push('/login')
   }
 
   return (
@@ -25,15 +29,15 @@ export default function AdminSidebar() {
       </div>
 
       <nav className="flex flex-col gap-1 flex-1">
-        <NavLink to="/admin" end className={linkClass}>
+        <Link href="/admin" className={linkClass('/admin', true)}>
           <LayoutDashboard size={18} /> Panel Principal
-        </NavLink>
-        <NavLink to="/admin/products" className={linkClass}>
+        </Link>
+        <Link href="/admin/products" className={linkClass('/admin/products')}>
           <Package size={18} /> Productos
-        </NavLink>
-        <NavLink to="/admin/bulk-upload" className={linkClass}>
+        </Link>
+        <Link href="/admin/bulk-upload" className={linkClass('/admin/bulk-upload')}>
           <Upload size={18} /> Carga Masiva
-        </NavLink>
+        </Link>
       </nav>
 
       <button

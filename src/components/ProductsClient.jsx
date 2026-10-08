@@ -1,10 +1,10 @@
+'use client'
+
 import { useState, useEffect } from 'react'
-import { Helmet } from 'react-helmet-async'
-import { Search, FlaskConical, MessageCircle, Truck, ShieldCheck, User, Phone, Send, Loader2, CheckCircle } from 'lucide-react'
-import { useSearchParams } from 'react-router-dom'
-import ProductGrid from '../components/ProductGrid'
-import { WhatsAppFloating } from '../components/WhatsAppButton'
-import { useProducts } from '../hooks/useProducts'
+import { Search, ShieldCheck, Truck, User, Phone, Send, Loader2, CheckCircle } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
+import ProductGrid from './ProductGrid'
+import { WhatsAppFloating } from './WhatsAppButton'
 
 const FORMSPREE_URL = 'https://formspree.io/f/mredzbbv'
 
@@ -87,11 +87,10 @@ function ConsultaForm() {
   )
 }
 
-export default function Products() {
-  const { products, loading } = useProducts()
+export default function ProductsClient({ products }) {
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All')
-  const [searchParams] = useSearchParams()
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     const cat = searchParams.get('cat')
@@ -110,20 +109,11 @@ export default function Products() {
 
   return (
     <div className="min-h-screen">
-      <Helmet>
-        <title>Comprar Péptidos en República Dominicana | PeptiLabs UK®</title>
-        <meta name="description" content="Catálogo completo de péptidos en República Dominicana: Tirzepatide, Semaglutide, Retatrutide, BPC-157, TB-500, CJC-1295 y más. GLP-1 certificados GMP. Entrega en RD desde UK 🇬🇧." />
-        <link rel="canonical" href="https://peptilabsuk.com/products" />
-        <meta property="og:title" content="Comprar Péptidos en República Dominicana | PeptiLabs UK®" />
-        <meta property="og:description" content="Tirzepatide, Semaglutide, BPC-157 y +40 péptidos. Entrega en RD 🇩🇴. Certificado GMP, pureza >99%." />
-        <meta property="og:url" content="https://peptilabsuk.com/products" />
-      </Helmet>
-
       {/* Header */}
       <div className="bg-navy-950 border-b border-gold-500/10 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-3 mb-2">
-            <FlaskConical size={24} className="text-gold-400" />
+            <Search size={24} className="text-gold-400" />
             <h1 className="text-3xl font-black text-white">Catálogo de Péptidos</h1>
           </div>
           <p className="text-gray-400">Grado farmacéutico · Enviado desde Reino Unido 🇬🇧 · Pureza &gt;99% garantizada</p>
@@ -160,14 +150,11 @@ export default function Products() {
           </div>
         </div>
 
-        {/* Count */}
-        {!loading && (
-          <p className="text-gray-500 text-sm mb-6">
-            {filtered.length} producto{filtered.length !== 1 ? 's' : ''} encontrado{filtered.length !== 1 ? 's' : ''}
-          </p>
-        )}
+        <p className="text-gray-500 text-sm mb-6">
+          {filtered.length} producto{filtered.length !== 1 ? 's' : ''} encontrado{filtered.length !== 1 ? 's' : ''}
+        </p>
 
-        <ProductGrid products={filtered} loading={loading} />
+        <ProductGrid products={filtered} loading={false} />
 
         {/* Promo CTA */}
         <div className="mt-16 p-8 bg-navy-950 border border-gold-500/20 rounded-2xl text-center">
