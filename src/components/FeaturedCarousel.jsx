@@ -1,4 +1,4 @@
-import { Flame, FlaskConical } from 'lucide-react'
+import { FlaskConical } from 'lucide-react'
 import Link from 'next/link'
 
 export default function FeaturedCarousel({ products }) {
@@ -10,11 +10,7 @@ export default function FeaturedCarousel({ products }) {
     <section className="py-16 bg-navy-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 mb-2">
-            <Flame size={18} className="text-gold-400" />
-            <p className="text-gold-400 uppercase tracking-widest text-sm font-semibold">Más Vendidos</p>
-          </div>
-          <h2 className="text-3xl font-black text-white">Top Péptidos</h2>
+          <h2 className="text-3xl font-black text-white">Productos Destacados</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -36,9 +32,6 @@ export default function FeaturedCarousel({ products }) {
                     <FlaskConical size={48} className="text-gold-400/30" />
                   </div>
                 )}
-                <span className="absolute top-2 left-2 bg-gold-500 text-navy-900 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
-                  <Flame size={10} /> TOP
-                </span>
               </div>
 
               <div className="p-4 flex flex-col gap-3 flex-1">
@@ -67,6 +60,12 @@ export default function FeaturedCarousel({ products }) {
               </div>
             </Link>
           ))}
+        </div>
+
+        <div className="text-center mt-10">
+          <Link href="/products" className="text-gold-400 hover:text-gold-300 text-sm font-semibold transition-colors">
+            Ver Catálogo Completo →
+          </Link>
         </div>
       </div>
     </section>
