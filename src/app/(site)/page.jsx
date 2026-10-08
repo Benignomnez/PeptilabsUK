@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ShieldCheck, Microscope, Sparkles, Globe, FlaskConical, CheckCircle, MessageCircle, Package, CreditCard, Truck } from 'lucide-react'
+import { ShieldCheck, Microscope, Sparkles, Globe, FlaskConical, CheckCircle, MessageCircle } from 'lucide-react'
 import FeaturedCarousel from '../../components/FeaturedCarousel'
 import Testimonials from '../../components/Testimonials'
 import { getProducts } from '../../services/products'
@@ -31,11 +31,9 @@ const trustBadges = [
   { icon: '🚚', label: 'Tracking incluido', sub: 'Seguimiento en tiempo real' },
 ]
 
-const orderSteps = [
-  { icon: FlaskConical, step: '01', title: 'Elige tu Péptido', desc: 'Explora nuestro catálogo completo con 43+ péptidos de grado farmacéutico.' },
-  { icon: MessageCircle, step: '02', title: 'Escríbenos por WhatsApp', desc: 'Contáctanos con el producto de interés. Nuestros especialistas te orientarán.' },
-  { icon: CreditCard, step: '03', title: 'Realiza tu Pago', desc: 'Métodos de pago seguros y flexibles. Confirmación inmediata.' },
-  { icon: Truck, step: '04', title: 'Recibe tu Pedido', desc: 'Envío discreto desde UK con número de tracking incluido.' },
+const howItWorks = [
+  { icon: FlaskConical, title: 'Explora el catálogo', desc: 'Más de 40 péptidos de grado farmacéutico.' },
+  { icon: MessageCircle, title: 'Contáctanos', desc: 'Escríbenos por WhatsApp sobre el producto de interés.' },
 ]
 
 export default async function Home() {
@@ -153,39 +151,21 @@ export default async function Home() {
       {/* Featured Carousel */}
       <FeaturedCarousel products={products} />
 
-      {/* How to Order */}
-      <section className="py-20 bg-navy-950 border-y border-gold-500/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <p className="text-gold-400 uppercase tracking-widest text-sm font-semibold mb-2">Simple y Rápido</p>
-            <h2 className="text-3xl font-black text-white">¿Cómo Ordenar?</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
-            {orderSteps.map(({ icon: Icon, step, title, desc }) => (
-              <div key={step} className="pt-5">
-                <div className="relative bg-navy-800 border border-navy-700 rounded-xl p-6 pt-8 text-center hover:border-gold-500/40 transition-colors">
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold-500 text-navy-900 font-black text-sm w-8 h-8 rounded-full flex items-center justify-center shadow-lg">
-                    {step}
-                  </div>
-                  <div className="mb-4 flex justify-center">
-                    <Icon size={32} className="text-gold-400" />
-                  </div>
-                  <h3 className="text-white font-bold mb-2">{title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">{desc}</p>
-                </div>
+      {/* How it works — kept small per brief: not a major homepage block */}
+      <section className="py-10 bg-navy-950 border-y border-gold-500/10">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center gap-6 sm:gap-10">
+          {howItWorks.map(({ icon: Icon, title, desc }) => (
+            <div key={title} className="flex items-center gap-3 text-center sm:text-left">
+              <Icon size={24} className="text-gold-400 shrink-0" />
+              <div>
+                <p className="text-white font-semibold text-sm">{title}</p>
+                <p className="text-gray-500 text-xs">{desc}</p>
               </div>
-            ))}
-          </div>
-          <div className="text-center mt-10">
-            <a
-              href="https://wa.me/8299098362?text=Hola%2C+quiero+realizar+un+pedido."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center gap-2 text-base"
-            >
-              <MessageCircle size={20} /> Iniciar Pedido por WhatsApp
-            </a>
-          </div>
+            </div>
+          ))}
+          <Link href="/contact" className="btn-secondary text-sm py-2 px-5 shrink-0 sm:ml-auto">
+            Contactar
+          </Link>
         </div>
       </section>
 
