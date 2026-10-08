@@ -2,13 +2,20 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, FlaskConical, ShoppingCart } from 'lucide-react'
+import { Menu, X, FlaskConical, MessageCircle } from 'lucide-react'
 import { useState } from 'react'
-import { useCart } from '../context/CartContext'
+
+const NAV_LINKS = [
+  { href: '/', label: 'Inicio', exact: true },
+  { href: '/products', label: 'Productos' },
+  { href: '/research', label: 'Research' },
+  { href: '/quality-testing', label: 'Calidad & Testing' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/about', label: 'Nosotros' },
+]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
-  const { totalItems, setOpen: setCartOpen } = useCart()
   const pathname = usePathname()
 
   function linkClass(href, exact = false) {
@@ -19,7 +26,7 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 inset-x-0 z-50 bg-navy-900/95 backdrop-blur border-b border-gold-500/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 shrink-0">
           <FlaskConical className="text-gold-400" size={22} />
           <span className="font-black text-lg tracking-tight">
             PEPTI<span className="text-gold-400">LABS</span>
@@ -27,47 +34,28 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
-          <Link href="/" className={linkClass('/', true)}>Inicio</Link>
-          <Link href="/products" className={linkClass('/products')}>Productos</Link>
-          <Link href="/about" className={linkClass('/about')}>Nosotros</Link>
-          <Link href="/admin" className={linkClass('/admin')}>Admin</Link>
-          <a
-            href="https://wa.me/8299098362"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary text-sm py-2 px-4"
-          >
-            Ordenar Ahora
-          </a>
+        <div className="hidden lg:flex items-center gap-5 text-sm">
+          {NAV_LINKS.map(({ href, label, exact }) => (
+            <Link key={href} href={href} className={linkClass(href, exact)}>{label}</Link>
+          ))}
+          <Link href="/contact" className="btn-primary text-sm py-2 px-4 flex items-center gap-1.5">
+            <MessageCircle size={15} /> Contactar
+          </Link>
         </div>
 
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => setCartOpen(true)}
-            className="relative text-gray-300 hover:text-gold-400 transition-colors"
-            aria-label="Ver pedido"
-          >
-            <ShoppingCart size={22} />
-            {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 bg-gold-500 text-navy-900 text-xs font-black w-5 h-5 rounded-full flex items-center justify-center">
-                {totalItems}
-              </span>
-            )}
-          </button>
-          <button className="md:hidden text-gray-300" onClick={() => setOpen(!open)}>
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
+        <button className="lg:hidden text-gray-300" onClick={() => setOpen(!open)} aria-label="Menú">
+          {open ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
 
       {open && (
-        <div className="md:hidden bg-navy-800 border-t border-gold-500/20 px-4 py-4 flex flex-col gap-4">
-          <Link href="/" className={linkClass('/', true)} onClick={() => setOpen(false)}>Inicio</Link>
-          <Link href="/products" className={linkClass('/products')} onClick={() => setOpen(false)}>Productos</Link>
-          <Link href="/about" className={linkClass('/about')} onClick={() => setOpen(false)}>Nosotros</Link>
-          <Link href="/admin" className={linkClass('/admin')} onClick={() => setOpen(false)}>Admin</Link>
-          <a href="https://wa.me/8299098362" target="_blank" rel="noopener noreferrer" className="btn-primary text-center text-sm">Ordenar Ahora</a>
+        <div className="lg:hidden bg-navy-800 border-t border-gold-500/20 px-4 py-4 flex flex-col gap-4">
+          {NAV_LINKS.map(({ href, label, exact }) => (
+            <Link key={href} href={href} className={linkClass(href, exact)} onClick={() => setOpen(false)}>{label}</Link>
+          ))}
+          <Link href="/contact" className="btn-primary text-center text-sm flex items-center justify-center gap-1.5" onClick={() => setOpen(false)}>
+            <MessageCircle size={16} /> Contactar
+          </Link>
         </div>
       )}
     </nav>

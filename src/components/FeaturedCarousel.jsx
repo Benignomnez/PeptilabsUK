@@ -1,11 +1,7 @@
-'use client'
-
-import { Flame, FlaskConical, ShoppingCart } from 'lucide-react'
+import { Flame, FlaskConical } from 'lucide-react'
 import Link from 'next/link'
-import { useCart } from '../context/CartContext'
 
 export default function FeaturedCarousel({ products }) {
-  const { addItem } = useCart()
   const featured = products.filter(p => p.featured).slice(0, 4)
 
   if (!featured.length) return null
@@ -23,7 +19,11 @@ export default function FeaturedCarousel({ products }) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {featured.map(product => (
-            <div key={product.id} className="card flex flex-col group hover:border-gold-500/40 transition-colors">
+            <Link
+              key={product.id}
+              href={`/products/${product.id}`}
+              className="card flex flex-col group hover:border-gold-500/40 transition-colors"
+            >
               <div className="relative bg-navy-700 h-48 overflow-hidden">
                 {product.image_url ? (
                   <img
@@ -50,33 +50,22 @@ export default function FeaturedCarousel({ products }) {
                   )}
                 </div>
 
-                <div className="mt-auto flex items-center justify-between mb-3">
+                <div className="mt-auto flex items-center justify-between">
                   <span className="text-gold-400 font-black text-xl">
                     RD${Number(product.price).toLocaleString()}
                   </span>
-                  {product.stock === 0 && (
+                  {product.stock === 0 ? (
                     <span className="text-xs px-2 py-1 rounded-full font-medium bg-red-900/30 text-red-400">
                       Agotado
                     </span>
+                  ) : (
+                    <span className="text-xs text-gray-500 group-hover:text-gold-400 transition-colors">
+                      Ver producto →
+                    </span>
                   )}
                 </div>
-
-                <button
-                  onClick={() => addItem(product)}
-                  disabled={product.stock === 0}
-                  className="flex items-center justify-center gap-2 bg-navy-700 hover:bg-navy-600 border border-navy-600 hover:border-gold-500/50 text-gray-200 font-semibold px-4 py-2.5 rounded-lg transition-colors w-full text-sm disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                  <ShoppingCart size={15} />
-                  {product.stock === 0 ? 'Agotado' : 'Agregar al pedido'}
-                </button>
-                <Link
-                  href={`/products/${product.id}`}
-                  className="text-center text-xs text-gray-500 hover:text-gold-400 transition-colors py-1"
-                >
-                  Ver detalles →
-                </Link>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

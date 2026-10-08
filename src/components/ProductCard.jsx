@@ -1,14 +1,12 @@
-'use client'
-
 import Link from 'next/link'
-import { WhatsAppOrderButton } from './WhatsAppButton'
-import { FlaskConical, ShoppingCart } from 'lucide-react'
-import { useCart } from '../context/CartContext'
+import { FlaskConical } from 'lucide-react'
 
 export default function ProductCard({ product }) {
-  const { addItem } = useCart()
   return (
-    <div className="card flex flex-col group hover:border-gold-500/40 transition-colors duration-200">
+    <Link
+      href={`/products/${product.id}`}
+      className="card flex flex-col group hover:border-gold-500/40 transition-colors duration-200"
+    >
       <div className="relative bg-navy-700 h-48 overflow-hidden">
         {product.image_url ? (
           <img
@@ -48,28 +46,17 @@ export default function ProductCard({ product }) {
           <span className="text-xl font-black text-gold-400">
             RD${Number(product.price).toLocaleString()}
           </span>
-          {product.stock === 0 && (
+          {product.stock === 0 ? (
             <span className="text-xs px-2 py-1 rounded-full font-medium bg-red-900/30 text-red-400">
               Agotado
             </span>
+          ) : (
+            <span className="text-xs text-gray-500 group-hover:text-gold-400 transition-colors">
+              Ver producto →
+            </span>
           )}
         </div>
-
-        <button
-          onClick={() => addItem(product)}
-          disabled={product.stock === 0}
-          className="flex items-center justify-center gap-2 bg-navy-700 hover:bg-navy-600 border border-navy-600 hover:border-gold-500/50 text-gray-200 font-semibold px-5 py-2.5 rounded-lg transition-colors w-full text-sm disabled:opacity-40 disabled:cursor-not-allowed"
-        >
-          <ShoppingCart size={15} />
-          {product.stock === 0 ? 'Agotado' : 'Agregar al pedido'}
-        </button>
-        <Link
-          href={`/products/${product.id}`}
-          className="text-center text-xs text-gray-500 hover:text-gold-400 transition-colors py-1"
-        >
-          Ver detalles →
-        </Link>
       </div>
-    </div>
+    </Link>
   )
 }

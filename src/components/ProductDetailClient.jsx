@@ -2,10 +2,8 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, FlaskConical, ShieldCheck, Truck, Award, MessageCircle, Package, CheckCircle, ShoppingCart } from 'lucide-react'
+import { ArrowLeft, FlaskConical, ShieldCheck, Truck, Award, MessageCircle, Package, CheckCircle } from 'lucide-react'
 import ProductCard from './ProductCard'
-import { WhatsAppFloating } from './WhatsAppButton'
-import { useCart } from '../context/CartContext'
 
 const CATEGORY_INFO = {
   'Regeneración & Salud': {
@@ -71,7 +69,6 @@ const SHIPPING_FEATURES = [
 
 export default function ProductDetailClient({ product, related }) {
   const router = useRouter()
-  const { addItem } = useCart()
 
   const info = CATEGORY_INFO[product.category] || CATEGORY_INFO['Otros & Especiales']
   const waMessage = encodeURIComponent(`Hola, me interesa el producto: ${product.name} (RD$${Number(product.price).toLocaleString()}). ¿Está disponible?`)
@@ -193,14 +190,6 @@ export default function ProductDetailClient({ product, related }) {
 
             {/* CTA */}
             <div className="hidden lg:flex flex-col gap-3">
-              <button
-                onClick={() => inStock && addItem(product)}
-                disabled={!inStock}
-                className={`flex items-center justify-center gap-2 bg-navy-700 hover:bg-navy-600 border border-gold-500/30 hover:border-gold-500/60 text-white font-bold px-6 py-4 rounded-lg transition-colors text-base ${!inStock ? 'opacity-50 cursor-not-allowed' : ''}`}
-              >
-                <ShoppingCart size={20} />
-                {inStock ? 'Agregar al pedido' : 'Agotado'}
-              </button>
               <a
                 href={waUrl}
                 target="_blank"
@@ -208,7 +197,7 @@ export default function ProductDetailClient({ product, related }) {
                 className={`btn-primary flex items-center justify-center gap-2 text-base py-4 ${!inStock ? 'opacity-50 pointer-events-none' : ''}`}
               >
                 <MessageCircle size={20} />
-                {inStock ? `Ordenar directo — RD$${Number(product.price).toLocaleString()}` : 'Producto Agotado'}
+                {inStock ? `Consultar por WhatsApp — RD$${Number(product.price).toLocaleString()}` : 'Producto Agotado'}
               </a>
             </div>
 
@@ -243,28 +232,20 @@ export default function ProductDetailClient({ product, related }) {
 
       {/* Sticky mobile CTA */}
       {inStock && (
-        <div className="lg:hidden fixed bottom-0 inset-x-0 bg-navy-950 border-t border-gold-500/20 p-4 z-40 flex gap-3">
-          <button
-            onClick={() => addItem(product)}
-            className="flex-1 flex items-center justify-center gap-2 bg-navy-700 border border-gold-500/30 text-white font-bold py-3 rounded-lg text-sm"
-          >
-            <ShoppingCart size={16} /> Agregar
-          </button>
+        <div className="lg:hidden fixed bottom-0 inset-x-0 bg-navy-950 border-t border-gold-500/20 p-4 z-40">
           <a
             href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 btn-primary flex items-center justify-center gap-2 py-3 text-sm"
+            className="btn-primary w-full flex items-center justify-center gap-2 py-3 text-sm"
           >
             <MessageCircle size={16} />
-            Ordenar directo
+            Consultar por WhatsApp
           </a>
         </div>
       )}
 
-      <div className={inStock ? 'pb-24 lg:pb-0' : ''}>
-        <WhatsAppFloating />
-      </div>
+      {inStock && <div className="h-20 lg:hidden" />}
     </div>
   )
 }
