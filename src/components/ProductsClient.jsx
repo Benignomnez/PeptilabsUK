@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { Search, ShieldCheck, Truck } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import ProductGrid from './ProductGrid'
-import { WhatsAppFloating } from './WhatsAppButton'
 import ConsultaForm from './ConsultaForm'
 
 export default function ProductsClient({ products }) {
@@ -94,8 +93,6 @@ export default function ProductsClient({ products }) {
           <ConsultaForm />
         </div>
       </div>
-
-      <WhatsAppFloating />
     </div>
   )
 }

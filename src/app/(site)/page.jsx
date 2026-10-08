@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { ShieldCheck, Microscope, Sparkles, Globe, FlaskConical, CheckCircle, MessageCircle, Package, CreditCard, Truck } from 'lucide-react'
 import FeaturedCarousel from '../../components/FeaturedCarousel'
 import Testimonials from '../../components/Testimonials'
-import { WhatsAppFloating } from '../../components/WhatsAppButton'
 import { getProducts } from '../../services/products'
 
 export const metadata = {
@@ -247,15 +246,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-      {/* Tagline */}
-      <div className="bg-gold-500 py-4 text-center">
-        <p className="text-navy-900 font-black uppercase tracking-widest text-sm">
-          Ciencia que transforma • Calidad que se siente • Resultados que importan
-        </p>
-      </div>
-
-      <WhatsAppFloating />
     </>
   )
 }

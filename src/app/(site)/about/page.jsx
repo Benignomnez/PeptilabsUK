@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { ShieldCheck, Microscope, Globe, Award, FlaskConical, CheckCircle, Zap, MessageCircle } from 'lucide-react'
-import { WhatsAppFloating } from '../../../components/WhatsAppButton'
 
 export const metadata = {
   title: 'Sobre Nosotros | PeptiLabs UK® | 10+ Años en Investigación Peptídica',
@@ -241,8 +240,6 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      <WhatsAppFloating />
     </div>
   )
 }

@@ -2,9 +2,8 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, FlaskConical, ShoppingCart, MessageCircle } from 'lucide-react'
+import { Menu, X, FlaskConical, MessageCircle } from 'lucide-react'
 import { useState } from 'react'
-import { useCart } from '../context/CartContext'
 
 const NAV_LINKS = [
   { href: '/', label: 'Inicio', exact: true },
@@ -13,12 +12,10 @@ const NAV_LINKS = [
   { href: '/quality-testing', label: 'Calidad & Testing' },
   { href: '/blog', label: 'Blog' },
   { href: '/about', label: 'Nosotros' },
-  { href: '/contact', label: 'Contacto' },
 ]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
-  const { totalItems, setOpen: setCartOpen } = useCart()
   const pathname = usePathname()
 
   function linkClass(href, exact = false) {
@@ -41,33 +38,14 @@ export default function Navbar() {
           {NAV_LINKS.map(({ href, label, exact }) => (
             <Link key={href} href={href} className={linkClass(href, exact)}>{label}</Link>
           ))}
-          <a
-            href="https://wa.me/8299098362"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary text-sm py-2 px-4 flex items-center gap-1.5"
-          >
-            <MessageCircle size={15} /> WhatsApp
-          </a>
+          <Link href="/contact" className="btn-primary text-sm py-2 px-4 flex items-center gap-1.5">
+            <MessageCircle size={15} /> Contactar
+          </Link>
         </div>
 
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => setCartOpen(true)}
-            className="relative text-gray-300 hover:text-gold-400 transition-colors"
-            aria-label="Ver pedido"
-          >
-            <ShoppingCart size={22} />
-            {totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 bg-gold-500 text-navy-900 text-xs font-black w-5 h-5 rounded-full flex items-center justify-center">
-                {totalItems}
-              </span>
-            )}
-          </button>
-          <button className="lg:hidden text-gray-300" onClick={() => setOpen(!open)} aria-label="Menú">
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
+        <button className="lg:hidden text-gray-300" onClick={() => setOpen(!open)} aria-label="Menú">
+          {open ? <X size={22} /> : <Menu size={22} />}
+        </button>
       </div>
 
       {open && (
@@ -75,9 +53,9 @@ export default function Navbar() {
           {NAV_LINKS.map(({ href, label, exact }) => (
             <Link key={href} href={href} className={linkClass(href, exact)} onClick={() => setOpen(false)}>{label}</Link>
           ))}
-          <a href="https://wa.me/8299098362" target="_blank" rel="noopener noreferrer" className="btn-primary text-center text-sm flex items-center justify-center gap-1.5">
-            <MessageCircle size={16} /> WhatsApp
-          </a>
+          <Link href="/contact" className="btn-primary text-center text-sm flex items-center justify-center gap-1.5" onClick={() => setOpen(false)}>
+            <MessageCircle size={16} /> Contactar
+          </Link>
         </div>
       )}
     </nav>
