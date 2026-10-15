@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ShieldCheck, FlaskConical, Truck, Headset, MessageCircle, Microscope } from 'lucide-react'
 import FeaturedCarousel from '../../components/FeaturedCarousel'
 import { getProducts } from '../../services/products'
+import { getVisibleCoaProductIds } from '../../services/coas'
 
 export const metadata = {
   title: 'PeptiLabs UK® | Péptidos Farmacéuticos en República Dominicana',
@@ -43,6 +44,7 @@ const howItWorks = [
 
 export default async function Home() {
   const products = await getProducts().catch(() => [])
+  const coaProductIds = await getVisibleCoaProductIds().catch(() => [])
 
   return (
     <>
@@ -95,7 +97,7 @@ export default async function Home() {
       </section>
 
       {/* Featured Products */}
-      <FeaturedCarousel products={products} />
+      <FeaturedCarousel products={products} coaProductIds={coaProductIds} />
 
       {/* Why PeptiLabs */}
       <section className="py-16 bg-navy-900 border-t border-gold-500/10">

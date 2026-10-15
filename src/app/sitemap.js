@@ -1,4 +1,5 @@
 import { getProducts } from '../services/products'
+import { getCoas } from '../services/coas'
 
 export default async function sitemap() {
   const base = 'https://peptilabsuk.com'
@@ -7,6 +8,9 @@ export default async function sitemap() {
     { url: `${base}/`, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
     { url: `${base}/products`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
     { url: `${base}/quality-testing`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${base}/coa`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 },
+    { url: `${base}/coa/how-to-verify`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.4 },
+    { url: `${base}/coa/methodology`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.4 },
     { url: `${base}/research`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.6 },
     { url: `${base}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.5 },
     { url: `${base}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
@@ -23,5 +27,13 @@ export default async function sitemap() {
     priority: 0.8,
   }))
 
-  return [...staticRoutes, ...productRoutes]
+  const coas = await getCoas().catch(() => [])
+  const coaRoutes = coas.map(c => ({
+    url: `${base}/coa/${c.id}`,
+    lastModified: c.updated_at ? new Date(c.updated_at) : new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.5,
+  }))
+
+  return [...staticRoutes, ...productRoutes, ...coaRoutes]
 }

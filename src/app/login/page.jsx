@@ -50,6 +50,10 @@ export default function Login() {
               onChange={e => setEmail(e.target.value)}
               className="input"
               placeholder="admin@peptilabs.co.uk"
+              autoCapitalize="off"
+              autoCorrect="off"
+              autoComplete="email"
+              spellCheck="false"
               required
             />
           </div>
@@ -61,6 +65,10 @@ export default function Login() {
               onChange={e => setPassword(e.target.value)}
               className="input"
               placeholder="••••••••"
+              autoCapitalize="off"
+              autoCorrect="off"
+              autoComplete="current-password"
+              spellCheck="false"
               required
             />
           </div>

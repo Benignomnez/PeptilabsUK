@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import ProductGrid from './ProductGrid'
 import ConsultaForm from './ConsultaForm'
 
-export default function ProductsClient({ products }) {
+export default function ProductsClient({ products, coaProductIds = [] }) {
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All')
   const searchParams = useSearchParams()
@@ -73,7 +73,7 @@ export default function ProductsClient({ products }) {
           {filtered.length} producto{filtered.length !== 1 ? 's' : ''} encontrado{filtered.length !== 1 ? 's' : ''}
         </p>
 
-        <ProductGrid products={filtered} loading={false} />
+        <ProductGrid products={filtered} loading={false} coaProductIds={coaProductIds} />
 
         {/* Promo CTA */}
         <div className="mt-16 p-8 bg-navy-950 border border-gold-500/20 rounded-2xl text-center">

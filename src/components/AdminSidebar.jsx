@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { FlaskConical, LayoutDashboard, Package, LogOut, Upload } from 'lucide-react'
+import { FlaskConical, LayoutDashboard, Package, LogOut, Upload, FileCheck } from 'lucide-react'
 import { supabase } from '../services/supabase'
 
 export default function AdminSidebar() {
@@ -37,6 +37,9 @@ export default function AdminSidebar() {
         </Link>
         <Link href="/admin/bulk-upload" className={linkClass('/admin/bulk-upload')}>
           <Upload size={18} /> Carga Masiva
+        </Link>
+        <Link href="/admin/coas" className={linkClass('/admin/coas')}>
+          <FileCheck size={18} /> Certificados
         </Link>
       </nav>
 
