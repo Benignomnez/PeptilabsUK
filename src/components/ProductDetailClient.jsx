@@ -195,8 +195,14 @@ export default function ProductDetailClient({ product, related, coa, coaProductI
               >
                 <FileCheck size={20} className="text-gold-400 shrink-0" />
                 <div className="flex-1">
-                  <p className="text-white text-sm font-semibold">Certificado de Análisis disponible</p>
-                  <p className="text-gray-500 text-xs">Ver certificado emitido por {coa.lab_name}</p>
+                  <p className="text-white text-sm font-semibold">
+                    {coa.is_third_party_reference ? 'Certificado de referencia disponible' : 'Certificado de Análisis disponible'}
+                  </p>
+                  <p className="text-gray-500 text-xs">
+                    {coa.is_third_party_reference
+                      ? `Referencia de terceros (${coa.source_name || coa.lab_name}) — no es del lote de PeptiLabs UK`
+                      : `Ver certificado emitido por ${coa.lab_name}`}
+                  </p>
                 </div>
                 <span className="text-gold-400 text-sm font-bold">Ver →</span>
               </Link>
@@ -238,7 +244,10 @@ export default function ProductDetailClient({ product, related, coa, coaProductI
               <h2 className="text-2xl font-black text-white">Productos Relacionados</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {related.map(p => <ProductCard key={p.id} product={p} hasCoa={coaProductIds.includes(p.id)} />)}
+              {related.map(p => {
+                const match = coaProductIds.find(c => c.productId === p.id)
+                return <ProductCard key={p.id} product={p} hasCoa={!!match} coaIsReference={match?.isReference} />
+              })}
             </div>
           </div>
         )}

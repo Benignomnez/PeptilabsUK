@@ -16,6 +16,8 @@ const EMPTY = {
   published_date: '',
   file_url: '',
   visible: true,
+  is_third_party_reference: false,
+  source_name: '',
 }
 
 export default function AdminCoas() {
@@ -84,6 +86,8 @@ export default function AdminCoas() {
         published_date: form.published_date || new Date().toISOString().slice(0, 10),
         file_url,
         visible: form.visible,
+        is_third_party_reference: form.is_third_party_reference,
+        source_name: form.is_third_party_reference ? (form.source_name || null) : null,
       }
 
       if (modal === 'create') await createCoa(payload)
@@ -156,7 +160,14 @@ export default function AdminCoas() {
                       }
                       <div>
                         <span className="text-gray-900 font-medium block">{c.product_name}</span>
-                        {c.concentration && <span className="text-gray-500 text-xs">{c.concentration}</span>}
+                        <div className="flex items-center gap-2">
+                          {c.concentration && <span className="text-gray-500 text-xs">{c.concentration}</span>}
+                          {c.is_third_party_reference && (
+                            <span className="text-[10px] font-bold text-amber-700 bg-amber-100 border border-amber-300 px-1.5 py-0.5 rounded-full">
+                              Ref. terceros{c.source_name ? ` · ${c.source_name}` : ''}
+                            </span>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </td>
@@ -276,6 +287,29 @@ export default function AdminCoas() {
                     className={`w-10 h-6 rounded-full transition-colors ${form.visible ? 'bg-gold-500' : 'bg-gray-300'}`}>
                     <span className={`block w-4 h-4 bg-white rounded-full mx-1 transition-transform ${form.visible ? 'translate-x-4' : ''}`} />
                   </button>
+                </div>
+
+                <div className="col-span-2 p-3 bg-amber-50 border border-amber-200 rounded-lg space-y-3">
+                  <div className="flex items-center gap-3">
+                    <button type="button" onClick={() => setForm(f => ({ ...f, is_third_party_reference: !f.is_third_party_reference }))}
+                      className={`w-10 h-6 rounded-full transition-colors shrink-0 ${form.is_third_party_reference ? 'bg-amber-500' : 'bg-gray-300'}`}>
+                      <span className={`block w-4 h-4 bg-white rounded-full mx-1 transition-transform ${form.is_third_party_reference ? 'translate-x-4' : ''}`} />
+                    </button>
+                    <label className="text-sm font-medium text-amber-900">
+                      Es un certificado de referencia de terceros (no es del lote de PeptiLabs UK)
+                    </label>
+                  </div>
+                  {form.is_third_party_reference && (
+                    <div>
+                      <label className="text-xs font-medium text-amber-900 mb-1 block">Empresa/marca real del certificado</label>
+                      <input
+                        className="w-full bg-white border border-amber-300 text-gray-900 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-amber-500 transition-colors"
+                        placeholder="ej. keshunpeptide.com"
+                        value={form.source_name}
+                        onChange={e => setForm(f => ({ ...f, source_name: e.target.value }))}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
 

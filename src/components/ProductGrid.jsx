@@ -29,10 +29,17 @@ export default function ProductGrid({ products, loading, coaProductIds = [] }) {
     )
   }
 
+  const coaMap = new Map(coaProductIds.map(c => [c.productId, c.isReference]))
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {products.map(product => (
-        <ProductCard key={product.id} product={product} hasCoa={coaProductIds.includes(product.id)} />
+        <ProductCard
+          key={product.id}
+          product={product}
+          hasCoa={coaMap.has(product.id)}
+          coaIsReference={coaMap.get(product.id)}
+        />
       ))}
     </div>
   )

@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 export default function FeaturedCarousel({ products, coaProductIds = [] }) {
   const featured = products.filter(p => p.featured).slice(0, 4)
+  const coaMap = new Map(coaProductIds.map(c => [c.productId, c.isReference]))
 
   if (!featured.length) return null
 
@@ -38,10 +39,16 @@ export default function FeaturedCarousel({ products, coaProductIds = [] }) {
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <p className="text-xs text-gold-400/70 uppercase tracking-wide">{product.category}</p>
-                    {coaProductIds.includes(product.id) && (
-                      <span className="flex items-center gap-1 text-[10px] font-bold text-green-400 bg-green-900/20 border border-green-700/30 px-1.5 py-0.5 rounded-full shrink-0">
-                        <FileCheck size={10} /> CoA
-                      </span>
+                    {coaMap.has(product.id) && (
+                      coaMap.get(product.id) ? (
+                        <span className="flex items-center gap-1 text-[10px] font-bold text-amber-400 bg-amber-900/20 border border-amber-700/30 px-1.5 py-0.5 rounded-full shrink-0">
+                          <FileCheck size={10} /> Ref.
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-1 text-[10px] font-bold text-green-400 bg-green-900/20 border border-green-700/30 px-1.5 py-0.5 rounded-full shrink-0">
+                          <FileCheck size={10} /> CoA
+                        </span>
+                      )
                     )}
                   </div>
                   <h3 className="text-white font-bold leading-snug">{product.name}</h3>

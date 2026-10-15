@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { FlaskConical, FileCheck } from 'lucide-react'
 
-export default function ProductCard({ product, hasCoa }) {
+export default function ProductCard({ product, hasCoa, coaIsReference }) {
   return (
     <Link
       href={`/products/${product.id}`}
@@ -38,9 +38,15 @@ export default function ProductCard({ product, hasCoa }) {
               {product.category || 'Péptido'}
             </p>
             {hasCoa && (
-              <span className="flex items-center gap-1 text-[10px] font-bold text-green-400 bg-green-900/20 border border-green-700/30 px-1.5 py-0.5 rounded-full shrink-0">
-                <FileCheck size={10} /> CoA
-              </span>
+              coaIsReference ? (
+                <span className="flex items-center gap-1 text-[10px] font-bold text-amber-400 bg-amber-900/20 border border-amber-700/30 px-1.5 py-0.5 rounded-full shrink-0">
+                  <FileCheck size={10} /> Ref.
+                </span>
+              ) : (
+                <span className="flex items-center gap-1 text-[10px] font-bold text-green-400 bg-green-900/20 border border-green-700/30 px-1.5 py-0.5 rounded-full shrink-0">
+                  <FileCheck size={10} /> CoA
+                </span>
+              )
             )}
           </div>
           <h3 className="text-white font-bold text-base leading-snug">{product.name}</h3>
