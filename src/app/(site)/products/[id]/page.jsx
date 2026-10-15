@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import ProductDetailClient from '../../../../components/ProductDetailClient'
 import { getProductById, getRelatedProducts } from '../../../../services/products'
-import { getCoaByProductId } from '../../../../services/coas'
+import { getCoaByProductId, getVisibleCoaProductIds } from '../../../../services/coas'
 
 const GLP1_CATEGORIES = ['Pérdida de Grasa & Metabolismo', 'GLP-1 & Pérdida de Peso']
 
@@ -49,6 +49,7 @@ export default async function ProductDetailPage({ params }) {
 
   const related = await getRelatedProducts(product.category, product.id).catch(() => [])
   const coa = await getCoaByProductId(product.id).catch(() => null)
+  const coaProductIds = await getVisibleCoaProductIds().catch(() => [])
   const canonicalUrl = `https://peptilabsuk.com/products/${product.id}`
 
   const productJsonLd = {
@@ -71,7 +72,7 @@ export default async function ProductDetailPage({ params }) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
-      <ProductDetailClient product={product} related={related} coa={coa} />
+      <ProductDetailClient product={product} related={related} coa={coa} coaProductIds={coaProductIds} />
     </>
   )
 }

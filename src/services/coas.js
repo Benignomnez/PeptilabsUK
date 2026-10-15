@@ -20,6 +20,16 @@ export async function getCoaById(id) {
   return data
 }
 
+export async function getVisibleCoaProductIds() {
+  const { data, error } = await supabase
+    .from('coas')
+    .select('product_id')
+    .eq('visible', true)
+    .not('product_id', 'is', null)
+  if (error) throw error
+  return data.map(c => c.product_id)
+}
+
 export async function getCoaByProductId(productId) {
   if (!productId) return null
   const { data, error } = await supabase

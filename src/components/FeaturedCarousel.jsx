@@ -1,7 +1,7 @@
-import { FlaskConical } from 'lucide-react'
+import { FlaskConical, FileCheck } from 'lucide-react'
 import Link from 'next/link'
 
-export default function FeaturedCarousel({ products }) {
+export default function FeaturedCarousel({ products, coaProductIds = [] }) {
   const featured = products.filter(p => p.featured).slice(0, 4)
 
   if (!featured.length) return null
@@ -36,7 +36,14 @@ export default function FeaturedCarousel({ products }) {
 
               <div className="p-4 flex flex-col gap-3 flex-1">
                 <div>
-                  <p className="text-xs text-gold-400/70 uppercase tracking-wide mb-1">{product.category}</p>
+                  <div className="flex items-center gap-2 mb-1">
+                    <p className="text-xs text-gold-400/70 uppercase tracking-wide">{product.category}</p>
+                    {coaProductIds.includes(product.id) && (
+                      <span className="flex items-center gap-1 text-[10px] font-bold text-green-400 bg-green-900/20 border border-green-700/30 px-1.5 py-0.5 rounded-full shrink-0">
+                        <FileCheck size={10} /> CoA
+                      </span>
+                    )}
+                  </div>
                   <h3 className="text-white font-bold leading-snug">{product.name}</h3>
                   {product.description && (
                     <p className="text-gray-400 text-xs mt-1 line-clamp-2">{product.description}</p>

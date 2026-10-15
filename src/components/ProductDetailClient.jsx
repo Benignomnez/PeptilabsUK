@@ -67,7 +67,7 @@ const SHIPPING_FEATURES = [
   { icon: Award, label: 'HPLC Verificado', sub: 'Cada lote analizado' },
 ]
 
-export default function ProductDetailClient({ product, related, coa }) {
+export default function ProductDetailClient({ product, related, coa, coaProductIds = [] }) {
   const router = useRouter()
 
   const info = CATEGORY_INFO[product.category] || CATEGORY_INFO['Otros & Especiales']
@@ -238,7 +238,7 @@ export default function ProductDetailClient({ product, related, coa }) {
               <h2 className="text-2xl font-black text-white">Productos Relacionados</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {related.map(p => <ProductCard key={p.id} product={p} />)}
+              {related.map(p => <ProductCard key={p.id} product={p} hasCoa={coaProductIds.includes(p.id)} />)}
             </div>
           </div>
         )}

@@ -95,7 +95,11 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-gold-500/10 py-6 text-center text-xs text-gray-600 px-4">
-        <p>© {new Date().getFullYear()} PeptiLabs UK. Todos los derechos reservados.</p>
+        <p>
+          © {new Date().getFullYear()} PeptiLabs UK. Todos los derechos reservados.
+          {' · '}
+          <Link href="/login" className="hover:text-gold-400 transition-colors">Admin</Link>
+        </p>
       </div>
     </footer>
   )

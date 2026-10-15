@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import ProductsClient from '../../../components/ProductsClient'
 import { getProducts } from '../../../services/products'
+import { getVisibleCoaProductIds } from '../../../services/coas'
 
 export const metadata = {
   title: 'Comprar Péptidos en República Dominicana | PeptiLabs UK®',
@@ -15,10 +16,11 @@ export const metadata = {
 
 export default async function ProductsPage() {
   const products = await getProducts().catch(() => [])
+  const coaProductIds = await getVisibleCoaProductIds().catch(() => [])
 
   return (
     <Suspense fallback={null}>
-      <ProductsClient products={products} />
+      <ProductsClient products={products} coaProductIds={coaProductIds} />
     </Suspense>
   )
 }
