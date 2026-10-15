@@ -33,13 +33,13 @@ export default function CoaIndexClient({ coas }) {
             placeholder="Buscar producto, variación..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full bg-navy-800 border border-navy-600 text-gray-100 rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-gold-500 transition-colors placeholder-gray-500"
+            className="w-full bg-white border border-gray-300 text-gray-900 rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:border-gold-500 transition-colors placeholder-gray-400"
           />
         </div>
         <select
           value={sort}
           onChange={e => setSort(e.target.value)}
-          className="bg-navy-800 border border-navy-600 text-gray-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold-500 transition-colors"
+          className="bg-white border border-gray-300 text-gray-900 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold-500 transition-colors"
         >
           <option value="recent">Más recientes</option>
           <option value="name">Nombre (A-Z)</option>
@@ -51,9 +51,9 @@ export default function CoaIndexClient({ coas }) {
       </p>
 
       {filtered.length === 0 ? (
-        <div className="text-center py-16 border border-dashed border-navy-700 rounded-2xl">
-          <FileSearch size={40} className="text-gold-400/30 mx-auto mb-4" />
-          <p className="text-white font-semibold mb-1">
+        <div className="text-center py-16 border border-dashed border-gray-300 rounded-2xl bg-white">
+          <FileSearch size={40} className="text-gold-500/40 mx-auto mb-4" />
+          <p className="text-gray-900 font-semibold mb-1">
             {coas.length === 0 ? 'Todavía no hay certificados publicados' : 'Sin resultados'}
           </p>
           <p className="text-gray-500 text-sm max-w-md mx-auto">

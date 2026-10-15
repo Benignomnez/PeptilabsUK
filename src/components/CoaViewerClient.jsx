@@ -31,30 +31,30 @@ export default function CoaViewerClient({ coa }) {
         <button
           onClick={zoomOut}
           aria-label="Reducir zoom"
-          className="w-9 h-9 flex items-center justify-center rounded-full bg-navy-800 border border-navy-700 text-gray-300 hover:border-gold-500/50 transition-colors"
+          className="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-600 hover:border-gold-500/60 transition-colors"
         >
           <Minus size={16} />
         </button>
-        <span className="text-gray-400 text-sm w-14 text-center tabular-nums">
+        <span className="text-gray-500 text-sm w-14 text-center tabular-nums">
           {fitWidth ? 'Ajuste' : `${zoom}%`}
         </span>
         <button
           onClick={zoomIn}
           aria-label="Aumentar zoom"
-          className="w-9 h-9 flex items-center justify-center rounded-full bg-navy-800 border border-navy-700 text-gray-300 hover:border-gold-500/50 transition-colors"
+          className="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-600 hover:border-gold-500/60 transition-colors"
         >
           <Plus size={16} />
         </button>
         <button
           onClick={toggleFit}
           aria-label="Ajustar al ancho"
-          className="w-9 h-9 flex items-center justify-center rounded-full bg-navy-800 border border-navy-700 text-gray-300 hover:border-gold-500/50 transition-colors"
+          className="w-9 h-9 flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-600 hover:border-gold-500/60 transition-colors"
         >
           <Move size={16} />
         </button>
       </div>
 
-      <div className="overflow-auto rounded-xl border border-navy-700 bg-navy-950">
+      <div className="overflow-auto rounded-xl border border-gray-200 bg-gray-50">
         <div className={fitWidth ? 'w-full' : 'inline-block'} style={fitWidth ? {} : { width: `${zoom}%`, minWidth: '100%' }}>
           <div className="relative bg-white">
             <img
