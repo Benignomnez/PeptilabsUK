@@ -6,6 +6,7 @@ const EXPLORE_LINKS = [
   { href: '/products', label: 'Productos' },
   { href: '/research', label: 'Research' },
   { href: '/quality-testing', label: 'Calidad & Testing' },
+  { href: '/coa', label: 'Certificados de Análisis' },
   { href: '/blog', label: 'Blog' },
 ]
 

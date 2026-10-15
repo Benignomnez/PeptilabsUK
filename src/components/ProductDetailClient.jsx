@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { ArrowLeft, FlaskConical, ShieldCheck, Truck, Award, MessageCircle, Package, CheckCircle } from 'lucide-react'
+import { ArrowLeft, FlaskConical, ShieldCheck, Truck, Award, MessageCircle, Package, CheckCircle, FileCheck } from 'lucide-react'
 import ProductCard from './ProductCard'
 
 const CATEGORY_INFO = {
@@ -67,7 +67,7 @@ const SHIPPING_FEATURES = [
   { icon: Award, label: 'HPLC Verificado', sub: 'Cada lote analizado' },
 ]
 
-export default function ProductDetailClient({ product, related }) {
+export default function ProductDetailClient({ product, related, coa }) {
   const router = useRouter()
 
   const info = CATEGORY_INFO[product.category] || CATEGORY_INFO['Otros & Especiales']
@@ -177,7 +177,7 @@ export default function ProductDetailClient({ product, related }) {
             </div>
 
             {/* Specs list */}
-            <ul className="space-y-2 mb-8">
+            <ul className="space-y-2 mb-6">
               {info.specs.map(s => (
                 <li key={s} className="flex items-center gap-2 text-sm text-gray-300">
                   <CheckCircle size={15} className="text-gold-400 shrink-0" /> {s}
@@ -187,6 +187,20 @@ export default function ProductDetailClient({ product, related }) {
                 <CheckCircle size={15} className="text-gold-400 shrink-0" /> Pureza {product.description?.includes('>99') ? '>99%' : '>98%'} garantizada
               </li>
             </ul>
+
+            {coa && (
+              <Link
+                href={`/coa/${coa.id}`}
+                className="flex items-center gap-3 bg-gold-500/5 border border-gold-500/20 rounded-xl p-4 mb-8 hover:border-gold-500/40 transition-colors"
+              >
+                <FileCheck size={20} className="text-gold-400 shrink-0" />
+                <div className="flex-1">
+                  <p className="text-white text-sm font-semibold">Certificado de Análisis disponible</p>
+                  <p className="text-gray-500 text-xs">Ver certificado emitido por {coa.lab_name}</p>
+                </div>
+                <span className="text-gold-400 text-sm font-bold">Ver →</span>
+              </Link>
+            )}
 
             {/* CTA */}
             <div className="hidden lg:flex flex-col gap-3">

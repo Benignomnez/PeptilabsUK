@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { ShieldCheck, Microscope, ClipboardCheck, FileText, MessageCircle } from 'lucide-react'
 import ResearchDisclaimer from '../../../components/ResearchDisclaimer'
 
@@ -85,16 +86,21 @@ export default function QualityTestingPage() {
             <div>
               <h2 className="text-2xl font-black text-white mb-3">Documentación</h2>
               <p className="text-gray-400 leading-relaxed mb-5">
-                Para solicitar el certificado de análisis (HPLC) de un lote específico, contáctanos directamente — te indicaremos la disponibilidad para el producto y lote de tu interés.
+                Publicamos los Certificados de Análisis (CoA) de nuestros productos a medida que el testing de terceros está disponible. Si el certificado de un producto específico no está publicado todavía, contáctanos y te indicaremos su disponibilidad.
               </p>
-              <a
-                href="https://wa.me/8299098362?text=Hola%2C+quisiera+solicitar+el+certificado+de+an%C3%A1lisis+de+un+producto."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary inline-flex items-center gap-2 text-sm"
-              >
-                <MessageCircle size={16} /> Solicitar documentación
-              </a>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/coa" className="btn-primary inline-flex items-center gap-2 text-sm">
+                  <FileText size={16} /> Ver Certificados de Análisis
+                </Link>
+                <a
+                  href="https://wa.me/8299098362?text=Hola%2C+quisiera+solicitar+el+certificado+de+an%C3%A1lisis+de+un+producto."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary inline-flex items-center gap-2 text-sm"
+                >
+                  <MessageCircle size={16} /> Solicitar documentación
+                </a>
+              </div>
             </div>
           </div>
         </section>
