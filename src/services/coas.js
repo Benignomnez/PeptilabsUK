@@ -23,11 +23,11 @@ export async function getCoaById(id) {
 export async function getVisibleCoaProductIds() {
   const { data, error } = await supabase
     .from('coas')
-    .select('product_id')
+    .select('product_id, is_third_party_reference')
     .eq('visible', true)
     .not('product_id', 'is', null)
   if (error) throw error
-  return data.map(c => c.product_id)
+  return data.map(c => ({ productId: c.product_id, isReference: c.is_third_party_reference }))
 }
 
 export async function getCoaByProductId(productId) {

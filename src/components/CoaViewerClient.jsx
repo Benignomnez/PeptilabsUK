@@ -27,6 +27,13 @@ export default function CoaViewerClient({ coa }) {
 
   return (
     <div>
+      {coa.is_third_party_reference && (
+        <div className="mb-6 p-4 bg-amber-50 border border-amber-300 rounded-xl text-sm text-amber-900">
+          <strong className="block mb-1">Referencia de terceros</strong>
+          Este certificado fue emitido a {coa.source_name || 'otro proveedor'} para su propio inventario — no corresponde a un lote de PeptiLabs UK. Lo publicamos como referencia general de calidad del compuesto mientras completamos el testing de nuestros propios lotes.
+        </div>
+      )}
+
       <div className="flex items-center justify-center gap-3 mb-6">
         <button
           onClick={zoomOut}

@@ -25,6 +25,11 @@ export default function CoaCard({ coa }) {
           </span>
           {publishedLabel && <span className="text-gray-400">{publishedLabel}</span>}
         </div>
+        {coa.is_third_party_reference && (
+          <span className="w-fit text-[10px] font-bold text-amber-700 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded-full">
+            Referencia de terceros
+          </span>
+        )}
         <h3 className="text-gray-900 font-bold italic leading-snug">{coa.product_name}</h3>
         {coa.concentration && <p className="text-gold-600 text-sm font-semibold">{coa.concentration}</p>}
         <p className="text-gray-500 text-xs">
