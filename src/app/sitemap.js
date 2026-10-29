@@ -1,5 +1,6 @@
 import { getProducts } from '../services/products'
 import { getCoas } from '../services/coas'
+import { getBlogManifest } from '../services/blog'
 
 export default async function sitemap() {
   const base = 'https://peptilabsuk.com'
@@ -35,5 +36,13 @@ export default async function sitemap() {
     priority: 0.5,
   }))
 
-  return [...staticRoutes, ...productRoutes, ...coaRoutes]
+  const blogArticles = getBlogManifest()
+  const blogRoutes = blogArticles.map(a => ({
+    url: `${base}/blog/${a.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }))
+
+  return [...staticRoutes, ...productRoutes, ...coaRoutes, ...blogRoutes]
 }
